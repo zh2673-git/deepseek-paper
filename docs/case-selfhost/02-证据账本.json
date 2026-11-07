@@ -7,20 +7,20 @@
       {
         "id": "ev-001",
         "kind": "measure",
-        "claim": "技能包共 21 个文件、134,902 字节",
-        "value": "134902",
+        "claim": "技能包共 23 个文件、159,076 字节",
+        "value": "159076",
         "unit": "bytes",
         "scope": "skills/deepseek-paper 下 references/templates/tools/registry/evals 五个目录",
-        "source": "windows dir 统计（21 文件 / 134902 字节；registry 47589, references 35467, tools 28939, templates 12023, evals 10884）",
+        "source": "windows dir 统计（23 文件 / 159076 字节；registry 65062, references 35467, tools 29197, templates 12566, evals 16784）",
         "status": "ok",
-        "verify": "476+355+289+120+109 千字节 ≈ 134.9KB；分项之和 = 134902 精确相等",
+        "verify": "65,062+35,467+29,197+12,566+16,784 = 159,076 精确相等",
         "used_in": "Abstract, 3 Implementation, Table 1"
       },
       {
         "id": "ev-002",
         "kind": "measure",
-        "claim": "四个工具的行数：evidence_scan 163、paper_table 166、paper_figure 154、paper_lint 250",
-        "value": "163/166/154/250",
+        "claim": "四个工具的行数：evidence_scan 163、paper_table 169、paper_figure 154、paper_lint 250",
+        "value": "163/169/154/250",
         "unit": "lines",
         "scope": "skills/deepseek-paper/tools/*.py",
         "source": "逐文件行数统计",
@@ -31,13 +31,13 @@
       {
         "id": "ev-003",
         "kind": "measure",
-        "claim": "evidence_scan 在本项目目录扫出 25 条候选，全部 status=todo",
-        "value": "25",
+        "claim": "evidence_scan 在本项目目录扫出 27 条候选，全部 status=todo",
+        "value": "27",
         "unit": "entries",
         "scope": "skills/deepseek-paper, depth=3, max=200",
-        "source": "outputs/deepseek-paper-paper/02-证据账本.json 的 _generated_at 与 summary",
+        "source": "evidence_scan 实跑输出 summary（files=27, measure=23, artifact=4, todo=27）",
         "status": "ok",
-        "verify": "summary.files=25, summary.todo=25",
+        "verify": "summary.files=27, summary.todo=27",
         "used_in": "2.2 Evidence Ledger"
       },
       {
@@ -91,13 +91,13 @@
       {
         "id": "ev-008",
         "kind": "measure",
-        "claim": "评测套件 7 个案例，6 个可判、pass_rate 1.00，第 7 个为 judge 待判",
+        "claim": "评测套件 11 个案例，10 个可判、pass_rate 1.00，第 11 个为 judge 待判",
         "value": "1.00",
         "unit": "pass_rate",
         "scope": "skills/deepseek-paper/evals/cases.jsonl",
         "source": "evals/results/0.1.0.json",
         "status": "ok",
-        "verify": "summary.total=7, decided=6, pending=1, pass_rate=1.0",
+        "verify": "summary.total=11, decided=10, pending=1, pass_rate=1.0",
         "used_in": "1.1 Summary of Evaluation Results"
       },
       {
@@ -121,7 +121,7 @@
         "scope": "SKILL.md 加单个 reference 文档",
         "source": "SKILL.md 5240B；references 单篇 3988–7610B",
         "status": "dropped",
-        "verify": "粗估口径不稳（中英混排的 bytes→tokens 比例未标定），主张已从正文撤下，仅保留 134,902 bytes 这一可精确复核的量",
+        "verify": "粗估口径不稳（中英混排的 bytes→tokens 比例未标定），主张已从正文撤下，仅保留 159,076 bytes 这一可精确复核的量",
         "used_in": ""
       },
       {

@@ -2,11 +2,11 @@
   "ok": true,
   "skill": "deepseek-paper",
   "version": "0.1.0",
-  "suite": "skill/evals/cases.jsonl",
-  "evaluated_at": "2026-11-07T10:29:56+08:00",
+  "suite": "D:\\ZH\\vibe code\\skills\\tool\\rsi-agent\\skills\\deepseek-paper\\evals\\cases.jsonl",
+  "evaluated_at": "2026-11-07T10:55:29+08:00",
   "summary": {
-    "total": 7,
-    "decided": 6,
+    "total": 11,
+    "decided": 10,
     "pending": 1,
     "invalid": 0,
     "pass_rate": 1.0
@@ -74,6 +74,42 @@
       "score": 1.0,
       "pass": true,
       "reason": "全部命中"
+    },
+    {
+      "id": "c8",
+      "signal": "assert",
+      "weight": 1.0,
+      "status": "decided",
+      "score": 1.0,
+      "pass": true,
+      "reason": "全部命中"
+    },
+    {
+      "id": "c9",
+      "signal": "assert",
+      "weight": 1.0,
+      "status": "decided",
+      "score": 1.0,
+      "pass": true,
+      "reason": "全部命中"
+    },
+    {
+      "id": "c10",
+      "signal": "assert",
+      "weight": 1.0,
+      "status": "decided",
+      "score": 1.0,
+      "pass": true,
+      "reason": "全部命中"
+    },
+    {
+      "id": "c11",
+      "signal": "assert",
+      "weight": 1.0,
+      "status": "decided",
+      "score": 1.0,
+      "pass": true,
+      "reason": "全部命中"
     }
   ],
   "llm": {
@@ -83,7 +119,7 @@
     "recorded": false
   },
   "baseline": {
-    "path": "ledger/baseline.json",
+    "path": "D:\\ZH\\vibe code\\skills\\tool\\rsi-agent\\ledger\\baseline.json",
     "version": "0.1.0",
     "pass_rate": 1.0
   },

@@ -83,4 +83,6 @@ paper_lint     明文 → G1–G12 门禁报告 + 排版指纹
 | 出图出表、写 caption | `references/05-图表规范.md` |
 | 跑门禁、看反例 | `references/06-质检与反例.md` |
 | 查 DeepSeek 论文原句/出处（20 篇取证） | `registry/ds-corpus-evidence.md` |
+| 查本技能为什么这样设计（成熟度/算子/档位/单元失败信号/裁决优先级） | `registry/skill-contract.md` |
+| 查行业还原（角色谱系/工件链/裁决权/真实反例/未验证假设） | `registry/profession-map.md` |
 | 填素材 / 填账本 / 填空摘要 / 填图表数据 | `templates/01-项目素材卡.md`、`templates/02-证据账本.json`、`templates/03-摘要填空.md`、`templates/04-贡献与结论填空.md`、`templates/05-图表数据.json` |

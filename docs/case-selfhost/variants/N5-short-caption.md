@@ -13,8 +13,8 @@ on GateLint, the number of hard gates satisfied, and on the same checker a naive
 written without any stage of the pipeline reaches 2 on GateLint, failing ten of twelve gates
 across the abstract, the contribution block, the navigation paragraph, the figure caption, and
 the failure declaration. Because the pipeline itself contains no trainable weights, we report 0
-total parameters with 0 activated parameters per step, and what it adds instead is 134,902 bytes
-of protocol payload across 21 files; building the pipeline consumed 2.04M tokens and 0 GPU
+total parameters with 0 activated parameters per step, and what it adds instead is 159,076 bytes
+of protocol payload across 23 files; building the pipeline consumed 2.04M tokens and 0 GPU
 hours, since no stage performs gradient-based training. We also report a defect that our own
 checker misses: a comparison verb inserted without a supporting entry passes the gate that is
 supposed to catch it, because that gate counts admissible entries rather than verifying them.
@@ -78,8 +78,8 @@ On the mechanical axis, a draft produced through the full pipeline satisfies 12 
 three of four fault-injected variants derived from it lose exactly 1 gate each, so a single
 injected fault is isolated rather than masked by an aggregate; the fourth variant, which inserts
 a comparison verb with no supporting entry, loses 0 gates, and we report it as a hole rather
-than repair it silently. On the statistical axis, the seven regression cases reach 1.00 on
-EvalSuite over the six cases that carry a decidable signal, the seventh being a judged case that
+than repair it silently. On the statistical axis, the eleven regression cases reach 1.00 on
+EvalSuite over the ten cases that carry a decidable signal, the eleventh being a judged case that
 stays pending until a judge command is supplied. The naive control draft satisfies 2 on GateLint
 and fails ten gates, and the two gates it satisfies are the only two that cannot fail on a short
 text, since it contains neither a figure nor a comparison verb.
@@ -116,8 +116,8 @@ flag recording whether the file contains digits. Every generated entry starts at
 means that no person has yet decided what the file is evidence for, and the writing stage may
 consume only entries whose status is `ok`.
 
-The consequence is deliberately annoying. On this project the scanner produced 25 entries and
-all 25 were `todo`, so the first writing attempt had, in principle, no admissible number at all.
+The consequence is deliberately annoying. On this project the scanner produced 27 entries and
+all 27 were `todo`, so the first writing attempt had, in principle, no admissible number at all.
 We regard the annoyance as the mechanism, because the alternative, letting the writer read the
 directory and select numbers freely, is how the invented score in the control draft came to
 exist.
@@ -144,7 +144,7 @@ comparison verb backed by a traceable entry (G9–G12).
 
 The trade-off is explicit and we state it rather than hide it: a gate is a regular expression or
 a structural scan, so it can be satisfied by a draft that is stylistically correct and
-substantively empty. Section 5.2 quantifies this gap and Section 5.3 explains why we keep the
+substantively empty. Section 5.2 quantifies this gap and Section 6 explains why we keep the
 gates anyway.
 
 ### 2.5 Tool-Rendered Artifacts: one home for every number
@@ -160,31 +160,28 @@ that a person would otherwise do by hand at the very end.
 ## 3 Implementation
 
 The pipeline ships as one protocol document, six reference documents, five templates, four
-tools, three registry documents, and an evaluation suite: 21 files totalling 134,902 bytes, of
+tools, five registry documents, and an evaluation suite: 23 files totalling 159,076 bytes, of
 which the registry is the largest single block because it carries excerpts from the twenty
-source reports. Table 1 gives the composition.
+source reports and the reconstruction of the profession behind the pipeline. Table 1 gives the
+composition.
 
 **Table 1: Payload composition of the pipeline. Files and bytes are counted on the released tree and the shares are rounded to one decimal place. The registry is read on demand rather than per step, so its share of the payload is not its share of the activated context. Because the rows carry different file counts, no cell is marked as best, and shares within 0.1 points are at the same level.**
 
 | Area | Files | Bytes | Share (%) |
 |---|---|---|---|
-| Registry | 3 | 47589 | 35.3 |
-| References | 6 | 35467 | 26.3 |
-| Tools | 4 | 28939 | 21.5 |
-| Templates | 5 | 12023 | 8.9 |
-| Evaluations | 3 | 10884 | 8.1 |
+| Registry | 5 | 65062 | 40.9 |
+| References | 6 | 35467 | 22.3 |
+| Tools | 4 | 29197 | 18.4 |
+| Templates | 5 | 12566 | 7.9 |
+| Evaluations | 3 | 16784 | 10.6 |
 
-Totals are 21 files and 134,902 bytes; the five shares sum to 100.1 because of rounding.
-
-Totals are 21 files and 134,902 bytes; the five shares sum to 100.1 because of rounding.
-
-Totals are 21 files and 134,902 bytes; the five shares sum to 100.1 because of rounding.
+Totals are 23 files and 159,076 bytes; the five shares sum to 100.1 because of rounding.
 
 All four tools speak the same protocol: JSON on standard input under an `args` key, and JSON on
 standard output carrying a status flag and a result object. Only the figure renderer depends on
 a third-party package, while the other three use the standard library alone, which keeps the
 gate check runnable on a machine without a plotting stack. The tools are small by construction:
-163 lines for the scanner, 166 for the table renderer, 154 for the figure renderer, and 250 for
+163 lines for the scanner, 169 for the table renderer, 154 for the figure renderer, and 250 for
 the gate checker.
 
 Note that the aforementioned costs include only the construction of the pipeline itself,
@@ -196,10 +193,10 @@ depends on.
 ### 4.1 Settings
 
 We use two suites. GateLint runs the twelve gates over a draft and reports a per-gate verdict
-together with the evidence that produced it. EvalSuite holds seven regression cases, each with
+together with the evidence that produced it. EvalSuite holds eleven regression cases, each with
 an input and an expected behaviour, scored by three signal types, namely an assertion for
-mechanical checks, a rubric for scored quality, and a separate model call for judged cases. Six
-of the seven cases carry a decidable signal, and the seventh stays pending by design until a
+mechanical checks, a rubric for scored quality, and a separate model call for judged cases. Ten
+of the eleven cases carry a decidable signal, and the eleventh stays pending by design until a
 judge command is supplied.
 
 Three kinds of draft are used: a compliant draft written through the full pipeline, a naive
