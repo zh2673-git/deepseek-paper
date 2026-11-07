@@ -1,0 +1,14 @@
+# Python
+__pycache__/
+*.pyc
+
+# 运行产物（论文产物不入库：每篇论文是用户数据，不是技能发布物）
+outputs/
+evidence-ledger.json
+lint-report.json
+*.patchbak
+
+# 临时/中间物
+.scratch/
+.DS_Store
+Thumbs.db
