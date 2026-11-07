@@ -3,7 +3,7 @@
   "skill": "deepseek-paper",
   "version": "0.1.0",
   "suite": "D:\\ZH\\vibe code\\skills\\tool\\rsi-agent\\skills\\deepseek-paper\\evals\\cases.jsonl",
-  "evaluated_at": "2026-11-07T10:55:29+08:00",
+  "evaluated_at": "2026-11-07T11:14:05+08:00",
   "summary": {
     "total": 11,
     "decided": 10,
