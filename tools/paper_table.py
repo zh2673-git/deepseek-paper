@@ -118,8 +118,11 @@ def run(args: dict) -> dict:
         return {"ok": False, "error": {"code": "E_SHAPE", "message": "需要 columns 与 rows"}}
     hl = d.get("highlight") or {}
     start = 1 if d.get("group_column") else 0
-    # 前 start+1 列是标签列（类别列 + benchmark 列），数据从标签列之后开始
-    data_start = start + 2
+    # 数据列起点：默认假设「类别列 + benchmark 列」两个标签列；表没有 benchmark 列时必须显式给
+    # data_start，否则 best 加粗会落到「越低越好」或非数值列上（如 Gates failed 被加粗成最高分）。
+    data_start = d.get("data_start")
+    if not isinstance(data_start, int) or data_start < 0:
+        data_start = start + 2
     ltx_rows, md_rows = mark_cells(rows, data_start, float(hl.get("tolerance", 0.3)),
                                    hl.get("best", True), hl.get("second", True))
     fmt = (args.get("fmt") or "both").lower()

@@ -25,6 +25,8 @@
 
 规则：`rows` 每行第一列可留空以表示延续上一组；`-` 为缺失；`highlight.tolerance` 用于「同档不加粗」判定；`caption_lead`/`caption_tail` 合起来构成三件套。
 
+**`data_start` 必读**：默认数据列从第 3 列开始（`group_column` 存在时从第 4 列），即假定「类别列 + benchmark 列」两个标签列。若表只有「名称列」一个标签列（如 `Draft | Gates | Verdict`），必须显式写 `"data_start": 1`；否则 best 加粗会落到非数值列或「越低越好」列上（实测把 `Gates failed` 的 10 加粗成了最高分）。同理，混合口径的列（如同时有 Gates satisfied 与 Gates failed）要么拆表，要么只让单一方向列参与加粗。
+
 ## 图数据
 
 ```json

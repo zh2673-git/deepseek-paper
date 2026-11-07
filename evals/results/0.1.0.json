@@ -2,8 +2,8 @@
   "ok": true,
   "skill": "deepseek-paper",
   "version": "0.1.0",
-  "suite": "D:\\ZH\\vibe code\\skills\\tool\\rsi-agent\\skills\\deepseek-paper\\evals\\cases.jsonl",
-  "evaluated_at": "2026-11-07T09:30:05+08:00",
+  "suite": "skill/evals/cases.jsonl",
+  "evaluated_at": "2026-11-07T10:29:56+08:00",
   "summary": {
     "total": 7,
     "decided": 6,
@@ -83,7 +83,7 @@
     "recorded": false
   },
   "baseline": {
-    "path": "D:\\ZH\\vibe code\\skills\\tool\\rsi-agent\\ledger\\baseline.json",
+    "path": "ledger/baseline.json",
     "version": "0.1.0",
     "pass_rate": 1.0
   },
