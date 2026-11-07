@@ -57,5 +57,20 @@
       "required": ["path"]
     },
     "exec": {"cmd": ["python", "tools/evidence_scan.py"]}
+  },
+  {
+    "name": "paper_render",
+    "description": "把论文 Markdown 渲染成可直接阅读的 HTML（单文件、图片 base64 内联、自带目录与打印样式，Ctrl+P 即存 PDF）与 DOCX（A4、页码、中文 eastAsia 字体、三线表、图内嵌）。",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "path": {"type": "string", "description": "论文 Markdown 路径"},
+        "out": {"type": "string", "description": "可选，输出路径基名（.html/.docx 自动补后缀）"},
+        "fmt": {"type": "string", "enum": ["html", "docx", "both"], "description": "默认 both"},
+        "title": {"type": "string", "description": "可选，文档标题；省略取首个 H1"}
+      },
+      "required": ["path"]
+    },
+    "exec": {"cmd": ["python", "tools/paper_render.py"]}
   }
 ]

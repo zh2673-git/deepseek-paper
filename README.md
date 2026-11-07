@@ -52,13 +52,14 @@
 
 ## 工具
 
-四个工具统一 `stdin` 收 `{"args": {...}}`、`stdout` 回 `{"ok": true, "result": {...}}`：
+五个工具统一 `stdin` 收 `{"args": {...}}`、`stdout` 回 `{"ok": true, "result": {...}}`：
 
 ```
 evidence_scan   扫项目 → 账本骨架（全部 todo，等人判定）
 paper_table     表数据 JSON → booktabs LaTeX + Markdown（best 加粗 / second 下划线 / 同档容差）
 paper_figure    图数据 JSON → PNG/SVG/PDF（三线网格 + 单一强调色）
 paper_lint      明文 → G1–G12 门禁报告 + 排版指纹
+paper_render    Markdown → 单文件 HTML（图片内联、目录锚点）+ DOCX（A4/页码/三线表）
 ```
 
 图表数据格式见 `templates/05-图表数据.json`。**表里的数字禁止手抄**——先落 JSON，再生成。
@@ -67,7 +68,7 @@ paper_lint      明文 → G1–G12 门禁报告 + 排版指纹
 echo '{"args":{"path":"04-论文.md","genre":"M","ledger":"02-证据账本.json"}}' | python tools/paper_lint.py
 ```
 
-`paper_figure` 需要 `matplotlib`；`paper_table` / `paper_lint` / `evidence_scan` 仅用标准库。
+`paper_figure` 需要 `matplotlib`；`paper_render` 需要 `python-docx`（只出 HTML 时可不装）；`paper_table` / `paper_lint` / `evidence_scan` 仅用标准库。
 
 ## 安装
 
@@ -104,11 +105,22 @@ references/04-证据与主张.md   账本字段 / 挖掘线 / 主张强度分级
 references/05-图表规范.md     三线表 / caption 三件套 / 视觉惯例
 references/06-质检与反例.md   G1–G12 门禁 + S1–S10 评分 + 反例
 templates/                   素材卡 / 账本 / 摘要填空 / 贡献与结论填空 / 图表数据
-tools/                       四个工具
+tools/                       五个工具
 evals/                       案例集 + rubric + 评测结果
 registry/                    技能契约 / 行业还原图 / DeepSeek 语料取证 / 范例 / 失败修复台账
 docs/case-selfhost/          自举案例：用本技能写本技能（英文版 + 中文阅读版 + 复现脚本）
 ```
+
+## 外部案例
+
+除自举案例外，本技能还被用于两个真实项目的技术报告。它们不在本仓库内，原因是每篇论文都是项目自身的产物，归属该项目；这里只做指引。
+
+| 项目 | 论文 | 位置 |
+|---|---|---|
+| rsi-agent | 《Frozen Strata》三层冻结地层与自修改边界（T 类，中英双版） | [zh2673-git/rsi-agent](https://github.com/zh2673-git/rsi-agent) `outputs/rsi-agent-paper/` |
+| rsi-agent | 《The Reconstructibility Gap》有损压缩后的可重建性审计（M 类，中英双版） | 同上 |
+
+这两篇同时是本技能的**跨项目验收**：两篇的 `paper_lint` 均为 10/12（G1/G2 属体裁豁免，因为项目没有外部基准分数可报），且每篇都产出了 md / html / docx 三态，表图数与源文件逐项一致。
 
 ## 验收标准
 

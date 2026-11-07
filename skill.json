@@ -17,7 +17,8 @@
     "证据账本 JSON",
     "论文正文（Markdown/LaTeX）",
     "图表（PNG/LaTeX 表）",
-    "paper_lint 门禁报告"
+    "paper_lint 门禁报告",
+    "可读交付件（HTML 单文件 / DOCX）"
   ],
   "acceptance": [
     {
@@ -53,13 +54,16 @@
     "file:markdown",
     "file:latex",
     "file:figure",
-    "file:json"
+    "file:json",
+    "file:html",
+    "file:docx"
   ],
   "tools": [
     "paper_lint",
     "paper_table",
     "paper_figure",
-    "evidence_scan"
+    "evidence_scan",
+    "paper_render"
   ],
   "verification": "partial",
   "source_level": "research",

@@ -55,9 +55,29 @@ evidence_scan  扫项目 → 账本骨架（全部 todo，等人判定）
 paper_table    表数据 JSON → booktabs LaTeX + Markdown（自动 best 加粗/second 下划线）
 paper_figure   图数据 JSON → PNG（三线网格 + 单一强调色）
 paper_lint     明文 → G1–G12 门禁报告 + 排版指纹
+paper_render   Markdown → 单文件 HTML + DOCX（交付给人读的形态）
 ```
 
 工具吃 `templates/05-图表数据.json` 的格式；**不许手写表里的数字**。
+
+### 工序 6.5 交付渲染（别让用户读 `.md` 源码）
+
+`paper_render` 把成稿转成**可直接打开**的形态。Markdown 是工作格式，不是交付格式——
+用户说「正常看」时指的是 HTML（浏览器双击）或 DOCX（Word 打开）。
+
+| 产物 | 特点 | 用途 |
+|---|---|---|
+| `.html` | 单文件、图片 base64 内联、自带目录锚点、`@media print` 样式 | 双击即读；`Ctrl+P` 直接存 PDF；可单文件发人 |
+| `.docx` | A4、1.5 倍行距、页码、中文 `eastAsia` 字体（宋体正文 / 微软雅黑标题）、三线表、图内嵌 | 投稿附录、评审批注、Word 里改 |
+
+**三条纪律**：
+
+1. **图用图片语法、表用内联 Markdown 表**。`[表 1](tables/table1.tex)` 这种链接在 md 里点开
+   只有 LaTeX 源码，用户看不到数据；`.tex` 只作投稿原件保留，正文必须内联。
+2. **题注写成 `**表 N：…**` 单独段落**，渲染器据此识别为 caption，不会混进正文。
+3. **渲染后必须验**：HTML 里 `<table>`/`<img>` 数要与源文件一致；DOCX 要能被 `python-docx`
+   重新打开且 `inline_shapes`/`tables` 数正确。**OOXML 元素顺序错了 Word 会报「文件已损坏」**
+   ——`w:pBdr` 必须排在 `w:spacing` 之前（`paper_render` 已处理，手改时别破坏）。
 
 ## 输出约定
 
