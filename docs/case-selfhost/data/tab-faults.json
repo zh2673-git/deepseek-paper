@@ -1,0 +1,15 @@
+{
+  "kind": "table",
+  "id": "fault-cases",
+  "caption_lead": "Fault-injection cases.",
+  "caption_tail": "Each row applies one realistic defect to the compliant draft and records which gate detected it, if any. Because the detection column mixes gate names with a null marker, no cell is marked as best, and the four cases are independent edits rather than a difficulty ordering, so all four are regarded as at the same level.",
+  "columns": ["Case", "Edit applied", "Gate fired", "Gates satisfied"],
+  "highlight": {"best": false, "second": false},
+  "rows": [
+    ["N2", "remove all scores from the abstract", "G1", "11"],
+    ["N3", "drop the in-text reference to the figure", "G11", "11"],
+    ["N4", "insert a comparison verb with no supporting entry", "none", "12"],
+    ["N5", "shorten a figure caption to one sentence", "G8", "11"]
+  ],
+  "footnotes": ["'none' denotes a defect the checker does not detect; it is reported rather than repaired, and Section 5.2 explains why."]
+}

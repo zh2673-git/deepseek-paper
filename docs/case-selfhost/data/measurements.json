@@ -1,0 +1,67 @@
+[
+  {
+    "draft": "Compliant",
+    "passed": 12,
+    "failed": 0,
+    "verdict": "PASS",
+    "failed_gates": [],
+    "defect": "none"
+  },
+  {
+    "draft": "N2-no-numbers",
+    "passed": 11,
+    "failed": 1,
+    "verdict": "FAIL",
+    "failed_gates": [
+      "G1"
+    ],
+    "defect": "N2-no-numbers"
+  },
+  {
+    "draft": "N3-orphan-figure",
+    "passed": 11,
+    "failed": 1,
+    "verdict": "FAIL",
+    "failed_gates": [
+      "G11"
+    ],
+    "defect": "N3-orphan-figure"
+  },
+  {
+    "draft": "N5-short-caption",
+    "passed": 11,
+    "failed": 1,
+    "verdict": "FAIL",
+    "failed_gates": [
+      "G8"
+    ],
+    "defect": "N5-short-caption"
+  },
+  {
+    "draft": "N4-unbacked-claim",
+    "passed": 12,
+    "failed": 0,
+    "verdict": "PASS",
+    "failed_gates": [],
+    "defect": "N4-unbacked-claim"
+  },
+  {
+    "draft": "Naive control",
+    "passed": 2,
+    "failed": 10,
+    "verdict": "FAIL",
+    "failed_gates": [
+      "G1",
+      "G2",
+      "G3",
+      "G4",
+      "G5",
+      "G6",
+      "G7",
+      "G8",
+      "G9",
+      "G10"
+    ],
+    "defect": "unwritten provenance"
+  }
+]

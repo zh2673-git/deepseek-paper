@@ -1,0 +1,15 @@
+\begin{table}[t]
+\centering
+\caption{Ablation of gate groups, reasoned from the gate definitions rather than measured by recompiling the checker. Each row removes one group of gates and records the class of defect that then escapes detection. The last row is the one whose consequence a reader cannot see unaided, and because the rows are independent rather than ordered levels there is no digit column to receive a best marking, while the yes and no verdicts are at the same level of confidence rather than a ranking.}
+\label{tab:ablation}
+\begin{tabular}{llcc}
+\toprule
+\textbf{Group removed} & \textbf{Gates} & \textbf{Defect that survives} & \textbf{Visible to reader} \\
+\midrule
+Provenance & G1-G4 & abstract without scores, unpaired scale & yes \\
+Structural & G5-G8 & one-sentence caption, ungrouped contributions & yes \\
+Honesty & G9-G12 & unbacked comparison, no failure declaration & no \\
+\bottomrule
+\end{tabular}
+\par\vspace{2pt}{\footnotesize 'Visible to reader' means detectable without running the checker, by reading the draft once.}
+\end{table}

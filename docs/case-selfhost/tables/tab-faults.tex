@@ -1,0 +1,16 @@
+\begin{table}[t]
+\centering
+\caption{Fault-injection cases. Each row applies one realistic defect to the compliant draft and records which gate detected it, if any. Because the detection column mixes gate names with a null marker, no cell is marked as best, and the four cases are independent edits rather than a difficulty ordering, so all four are regarded as at the same level.}
+\label{tab:fault-cases}
+\begin{tabular}{llcc}
+\toprule
+\textbf{Case} & \textbf{Edit applied} & \textbf{Gate fired} & \textbf{Gates satisfied} \\
+\midrule
+N2 & remove all scores from the abstract & G1 & 11 \\
+N3 & drop the in-text reference to the figure & G11 & 11 \\
+N4 & insert a comparison verb with no supporting entry & none & 12 \\
+N5 & shorten a figure caption to one sentence & G8 & 11 \\
+\bottomrule
+\end{tabular}
+\par\vspace{2pt}{\footnotesize 'none' denotes a defect the checker does not detect; it is reported rather than repaired, and Section 5.2 explains why.}
+\end{table}

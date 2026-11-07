@@ -1,0 +1,18 @@
+\begin{table}[t]
+\centering
+\caption{Gate outcomes on the compliant draft, the naive control, and four fault-injected variants. Each cell gives the number of the twelve hard gates satisfied, so a higher value is better everywhere in the table and no column inverts the direction of merit. Every draft is scored by the same checker at the same version and under the same genre, and counts within one gate of each other are regarded as at the same level. The unbacked-claim row is the exception discussed in Section 5.2: its defect survives because the ledger cross-reference counts entries rather than verifying them.}
+\label{tab:gate-outcomes}
+\begin{tabular}{llccc}
+\toprule
+\textbf{Draft} & \textbf{Gates satisfied (of 12)} & \textbf{Gates failed} & \textbf{Verdict} & \textbf{Defect injected} \\
+\midrule
+Compliant & $\mathbf{12}$ & 0 & PASS & none \\
+Naive control & 2 & $\mathbf{10}$ & FAIL & unwritten provenance \\
+N2 no numbers & $\mathbf{11}$ & 1 & FAIL & abstract without scores \\
+N3 orphan figure & $\mathbf{11}$ & 1 & FAIL & figure never referenced \\
+N4 unbacked claim & $\mathbf{12}$ & 0 & PASS & comparison verb, count-based check \\
+N5 short caption & $\mathbf{11}$ & 1 & FAIL & one-sentence figure caption \\
+\bottomrule
+\end{tabular}
+\par\vspace{2pt}{\footnotesize 'PASS' denotes that all twelve gates were satisfied, not that the draft is deliverable; see Section 5.2.}
+\end{table}

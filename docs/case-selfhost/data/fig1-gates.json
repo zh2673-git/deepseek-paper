@@ -1,0 +1,12 @@
+{
+  "kind": "figure",
+  "id": "fig-gates",
+  "type": "bar",
+  "caption": "Gate counts across six drafts scored by the same checker at the same version. Bars show the number of the twelve hard gates satisfied; the compliant draft reaches twelve, the naive control reaches two, and each of the three caught faults costs exactly one gate. The unbacked-claim draft also reaches twelve because its defect is invisible to a count-based ledger check.",
+  "y_label": "# Gates satisfied (of 12)",
+  "categories": ["Compliant", "Naive control", "N2-No numbers", "N3-Orphan figure", "N4-Unbacked claim", "N5-Short caption"],
+  "series": [
+    {"name": "Gates satisfied", "values": [12, 2, 11, 11, 12, 11], "highlight": true}
+  ],
+  "style": {"grid": "three-line", "colormap": "deepseek", "legend": "bottom", "value_labels": true}
+}

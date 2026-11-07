@@ -1,0 +1,141 @@
+{
+  "paper": {
+    "title": "PaperPipe: An Evidence-Gated Pipeline for DeepSeek-Style Technical Reporting",
+    "genre": "M",
+    "model_name": "PaperPipe",
+    "evidence": [
+      {
+        "id": "ev-001",
+        "kind": "measure",
+        "claim": "技能包共 21 个文件、134,902 字节",
+        "value": "134902",
+        "unit": "bytes",
+        "scope": "skills/deepseek-paper 下 references/templates/tools/registry/evals 五个目录",
+        "source": "windows dir 统计（21 文件 / 134902 字节；registry 47589, references 35467, tools 28939, templates 12023, evals 10884）",
+        "status": "ok",
+        "verify": "476+355+289+120+109 千字节 ≈ 134.9KB；分项之和 = 134902 精确相等",
+        "used_in": "Abstract, 3 Implementation, Table 1"
+      },
+      {
+        "id": "ev-002",
+        "kind": "measure",
+        "claim": "四个工具的行数：evidence_scan 163、paper_table 166、paper_figure 154、paper_lint 250",
+        "value": "163/166/154/250",
+        "unit": "lines",
+        "scope": "skills/deepseek-paper/tools/*.py",
+        "source": "逐文件行数统计",
+        "status": "ok",
+        "verify": "wc -l 等价统计，含空行与注释",
+        "used_in": "3 Implementation"
+      },
+      {
+        "id": "ev-003",
+        "kind": "measure",
+        "claim": "evidence_scan 在本项目目录扫出 25 条候选，全部 status=todo",
+        "value": "25",
+        "unit": "entries",
+        "scope": "skills/deepseek-paper, depth=3, max=200",
+        "source": "outputs/deepseek-paper-paper/02-证据账本.json 的 _generated_at 与 summary",
+        "status": "ok",
+        "verify": "summary.files=25, summary.todo=25",
+        "used_in": "2.2 Evidence Ledger"
+      },
+      {
+        "id": "ev-004",
+        "kind": "measure",
+        "claim": "建技能消耗 2.04M tokens（输入 648,153 + 缓存读 1,250,880 + 输出 142,026）",
+        "value": "2041059",
+        "unit": "tokens",
+        "scope": "runtime/.stream 下 25 个会话流，24 条带 usage 的记录",
+        "source": "runtime/.stream/*.jsonl 的 usage 字段求和",
+        "status": "ok",
+        "verify": "648153+1250880+142026=2041059；另有 61814 推理 token 未计入",
+        "used_in": "Abstract"
+      },
+      {
+        "id": "ev-005",
+        "kind": "measure",
+        "claim": "论文自身过 G1–G12 全绿，12/12",
+        "value": "12",
+        "unit": "gates",
+        "scope": "outputs/deepseek-paper-paper/04-论文.md, genre=M",
+        "source": "paper_lint 对 04-论文.md 的输出",
+        "status": "ok",
+        "verify": "failed=[]，verdict=PASS",
+        "used_in": "Abstract, 1.1, 4.1, 6 Conclusion, Table 2"
+      },
+      {
+        "id": "ev-006",
+        "kind": "measure",
+        "claim": "朴素对照稿过 2/12 门禁，失败 10 条（G1–G10）",
+        "value": "2",
+        "unit": "gates",
+        "scope": ".scratch/drafts/d0-naive.md, genre=T, 1166 字符",
+        "source": "paper_lint 对朴素稿的输出",
+        "status": "ok",
+        "verify": "failed=[G1..G10]，通过者仅 G11 与 G12（该稿无图、无比级断言）",
+        "used_in": "1.1, 4.1, 4.3, 6 Conclusion, Table 2"
+      },
+      {
+        "id": "ev-007",
+        "kind": "measure",
+        "claim": "四个单缺陷变体的门禁通过数：N2=11, N3=11, N5=11, N4=12（未给账本时）",
+        "value": "11/11/11/12",
+        "unit": "gates",
+        "scope": "outputs/deepseek-paper-paper/variants/*.md",
+        "source": "paper_lint 对每个变体的输出",
+        "status": "ok",
+        "verify": "N2 只触发 G1；N3 只触发 G11；N5 只触发 G8；N4 在未给账本时 G12 跳过 → 12/12，这是本论文 5.2 节申报的真实缺口",
+        "used_in": "1.1, 4.1, Table 2, Table 4, 5.2, Appendix B"
+      },
+      {
+        "id": "ev-008",
+        "kind": "measure",
+        "claim": "评测套件 7 个案例，6 个可判、pass_rate 1.00，第 7 个为 judge 待判",
+        "value": "1.00",
+        "unit": "pass_rate",
+        "scope": "skills/deepseek-paper/evals/cases.jsonl",
+        "source": "evals/results/0.1.0.json",
+        "status": "ok",
+        "verify": "summary.total=7, decided=6, pending=1, pass_rate=1.0",
+        "used_in": "1.1 Summary of Evaluation Results"
+      },
+      {
+        "id": "ev-009",
+        "kind": "compare",
+        "claim": "合规稿与单缺陷变体的门禁差距恰好 1 条，与朴素对照稿差距 10 条",
+        "value": "1 vs 10",
+        "unit": "gates",
+        "scope": "同一 paper_lint 版本，同一 genre",
+        "source": "ev-005/ev-006/ev-007 同批次测量",
+        "status": "ok",
+        "verify": "12-11=1；12-2=10；三个变体均精确差 1，说明门禁相互独立而非聚合为单一分数",
+        "used_in": "4.1, Figure 1"
+      },
+      {
+        "id": "ev-010",
+        "kind": "measure",
+        "claim": "单步激活的协议载荷约 3–4.5K tokens（SKILL.md 5240 字节 + 一个按需路由的 reference）",
+        "value": "3-4.5",
+        "unit": "K tokens",
+        "scope": "SKILL.md 加单个 reference 文档",
+        "source": "SKILL.md 5240B；references 单篇 3988–7610B",
+        "status": "dropped",
+        "verify": "粗估口径不稳（中英混排的 bytes→tokens 比例未标定），主张已从正文撤下，仅保留 134,902 bytes 这一可精确复核的量",
+        "used_in": ""
+      },
+      {
+        "id": "ev-011",
+        "kind": "compare",
+        "claim": "N4（插入无账本支撑的比较级断言）提供账本后仍 12/12 通过，是 G12 的假阴性",
+        "value": "12",
+        "unit": "gates",
+        "scope": "N4-unbacked-claim.md + 02-证据账本.json（1 条 kind=compare, status=ok）",
+        "source": "paper_lint 带 --ledger 实跑：failed=[], verdict=PASS",
+        "status": "ok",
+        "verify": "G12 细节原文『比较级断言 1 处, 账本 compare 证据 1 条』→ 判据为 cmps<=ncmp（1<=1）成立，故 PASS。缺陷在于该不等式只要账本里 compare 条目数 ≥ 正文比较级断言数就放行，并不把断言逐条绑定到指定条目",
+        "used_in": "Abstract, 4.3, 5.2, 6 Conclusion, Table 2, Table 4"
+      }
+    ]
+  }
+}

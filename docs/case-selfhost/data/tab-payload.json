@@ -1,0 +1,16 @@
+{
+  "kind": "table",
+  "id": "payload",
+  "caption_lead": "Payload composition of the pipeline.",
+  "caption_tail": "Files and bytes are counted on the released tree and the shares are rounded to one decimal place. The registry is read on demand rather than per step, so its share of the payload is not its share of the activated context. Because the rows carry different file counts, no cell is marked as best, and shares within 0.1 points are at the same level.",
+  "columns": ["Area", "Files", "Bytes", "Share (%)"],
+  "highlight": {"best": false, "second": false},
+  "rows": [
+    ["Registry", "3", "47589", "35.3"],
+    ["References", "6", "35467", "26.3"],
+    ["Tools", "4", "28939", "21.5"],
+    ["Templates", "5", "12023", "8.9"],
+    ["Evaluations", "3", "10884", "8.1"]
+  ],
+  "footnotes": ["Totals are 21 files and 134,902 bytes; the five shares sum to 100.1 because of rounding."]
+}
