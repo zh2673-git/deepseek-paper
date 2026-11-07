@@ -12,7 +12,7 @@ artifacts, and a deterministic gate check. On a draft produced through the pipel
 written without any stage of the pipeline reaches no score on GateLint, failing ten of twelve gates
 across the abstract, the contribution block, the navigation paragraph, the figure caption, and
 the failure declaration. Because the pipeline itself contains no trainable weights, we report 0
-total parameters with 0 activated parameters per step, and what it adds instead is 159,076 bytes
+total parameters with 0 activated parameters per step, and what it adds instead is 161,739 bytes
 of protocol payload across 23 files; building the pipeline consumed 2.04M tokens and 0 GPU
 hours, since no stage performs gradient-based training. We also report a defect that our own
 checker misses: a comparison verb inserted without a supporting entry passes the gate that is
@@ -77,8 +77,8 @@ On the mechanical axis, a draft produced through the full pipeline satisfies 12 
 three of four fault-injected variants derived from it lose exactly 1 gate each, so a single
 injected fault is isolated rather than masked by an aggregate; the fourth variant, which inserts
 a comparison verb with no supporting entry, loses 0 gates, and we report it as a hole rather
-than repair it silently. On the statistical axis, the eleven regression cases reach 1.00 on
-EvalSuite over the ten cases that carry a decidable signal, the eleventh being a judged case that
+than repair it silently. On the statistical axis, the twelve regression cases reach 1.00 on
+EvalSuite over the eleven cases that carry a decidable signal, the twelfth being a judged case that
 stays pending until a judge command is supplied. The naive control draft satisfies 2 on GateLint
 and fails ten gates, and the two gates it satisfies are the only two that cannot fail on a short
 text, since it contains neither a figure nor a comparison verb.
@@ -159,7 +159,7 @@ that a person would otherwise do by hand at the very end.
 ## 3 Implementation
 
 The pipeline ships as one protocol document, six reference documents, five templates, four
-tools, five registry documents, and an evaluation suite: 23 files totalling 159,076 bytes, of
+tools, five registry documents, and an evaluation suite: 23 files totalling 161,739 bytes, of
 which the registry is the largest single block because it carries excerpts from the twenty
 source reports and the reconstruction of the profession behind the pipeline. Table 1 gives the
 composition.
@@ -168,13 +168,13 @@ composition.
 
 | Area | Files | Bytes | Share (%) |
 |---|---|---|---|
-| Registry | 5 | 65062 | 40.9 |
-| References | 6 | 35467 | 22.3 |
-| Tools | 4 | 29197 | 18.4 |
-| Templates | 5 | 12566 | 7.9 |
-| Evaluations | 3 | 16784 | 10.6 |
+| Registry | 5 | 65793 | 40.7 |
+| References | 6 | 35467 | 21.9 |
+| Tools | 4 | 29197 | 18.1 |
+| Templates | 5 | 12566 | 7.8 |
+| Evaluations | 3 | 18716 | 11.6 |
 
-Totals are 23 files and 159,076 bytes; the five shares sum to 100.1 because of rounding.
+Totals are 23 files and 161,739 bytes; the five shares sum to 100.1 because of rounding.
 
 All four tools speak the same protocol: JSON on standard input under an `args` key, and JSON on
 standard output carrying a status flag and a result object. Only the figure renderer depends on
@@ -192,10 +192,10 @@ depends on.
 ### 4.1 Settings
 
 We use two suites. GateLint runs the twelve gates over a draft and reports a per-gate verdict
-together with the evidence that produced it. EvalSuite holds eleven regression cases, each with
+together with the evidence that produced it. EvalSuite holds twelve regression cases, each with
 an input and an expected behaviour, scored by three signal types, namely an assertion for
-mechanical checks, a rubric for scored quality, and a separate model call for judged cases. Ten
-of the eleven cases carry a decidable signal, and the eleventh stays pending by design until a
+mechanical checks, a rubric for scored quality, and a separate model call for judged cases. Eleven
+of the twelve cases carry a decidable signal, and the twelfth stays pending by design until a
 judge command is supplied.
 
 Three kinds of draft are used: a compliant draft written through the full pipeline, a naive

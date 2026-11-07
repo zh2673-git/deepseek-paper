@@ -7,13 +7,13 @@
       {
         "id": "ev-001",
         "kind": "measure",
-        "claim": "技能包共 23 个文件、159,076 字节",
-        "value": "159076",
+        "claim": "技能包共 23 个文件、161,739 字节",
+        "value": "161739",
         "unit": "bytes",
         "scope": "skills/deepseek-paper 下 references/templates/tools/registry/evals 五个目录",
-        "source": "windows dir 统计（23 文件 / 159076 字节；registry 65062, references 35467, tools 29197, templates 12566, evals 16784）",
+        "source": "windows dir 统计（23 文件 / 161739 字节；registry 65793, references 35467, tools 29197, templates 12566, evals 18716）",
         "status": "ok",
-        "verify": "65,062+35,467+29,197+12,566+16,784 = 159,076 精确相等",
+        "verify": "65,793+35,467+29,197+12,566+18,716 = 161,739 精确相等",
         "used_in": "Abstract, 3 Implementation, Table 1"
       },
       {
@@ -91,13 +91,13 @@
       {
         "id": "ev-008",
         "kind": "measure",
-        "claim": "评测套件 11 个案例，10 个可判、pass_rate 1.00，第 11 个为 judge 待判",
+        "claim": "评测套件 12 个案例，11 个可判、pass_rate 1.00，第 12 个为 judge 待判",
         "value": "1.00",
         "unit": "pass_rate",
         "scope": "skills/deepseek-paper/evals/cases.jsonl",
         "source": "evals/results/0.1.0.json",
         "status": "ok",
-        "verify": "summary.total=11, decided=10, pending=1, pass_rate=1.0",
+        "verify": "summary.total=12, decided=11, pending=1, pass_rate=1.0",
         "used_in": "1.1 Summary of Evaluation Results"
       },
       {
@@ -121,7 +121,7 @@
         "scope": "SKILL.md 加单个 reference 文档",
         "source": "SKILL.md 5240B；references 单篇 3988–7610B",
         "status": "dropped",
-        "verify": "粗估口径不稳（中英混排的 bytes→tokens 比例未标定），主张已从正文撤下，仅保留 159,076 bytes 这一可精确复核的量",
+        "verify": "粗估口径不稳（中英混排的 bytes→tokens 比例未标定），主张已从正文撤下，仅保留 161,739 bytes 这一可精确复核的量",
         "used_in": ""
       },
       {

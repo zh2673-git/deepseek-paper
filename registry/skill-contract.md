@@ -61,7 +61,7 @@
 
 | 级 | 怎么做 | 状态 |
 |---|---|---|
-| 1 自检 | `evals/cases.jsonl`（11 条，10 条可判、1 条 judge 待判）+ `paper_lint` 正负例 + 10 项评分 | 已做，`run_evals` pass_rate 1.00 |
+| 1 自检 | `evals/cases.jsonl`（12 条，11 条可判、1 条 judge 待判）+ `paper_lint` 正负例 + 10 项评分 | 已做，`run_evals` pass_rate 1.00 |
 | 2 同行 | 换人只读技能做同型任务；本仓已用「写本技能的论文」实跑一遍（`docs/case-selfhost/`） | 已做 1 次 |
 | 3 外部信号 | 真实投稿/审稿反馈、盲评「像不像 DeepSeek」 | **缺** |
 

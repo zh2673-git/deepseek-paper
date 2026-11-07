@@ -13,8 +13,9 @@
 | c9 | 故障注入脚本「改了但没改」：锚点文本随论文演化失效，`str.replace` 静默无变化，测量结论仍报旧值 | 脚本无断言 | 注入处加 `must_change()`，文本未变即 `SystemExit`；测量结果落 `data/measurements.json` 再从该文件抄数字 | 已生效（本篇 4 个变体均复跑确认） |
 | c10 | `paper_table` 生成的 markdown 首行已是 `**Table: <caption>**`，再手动加 `**Table 2: ` 前缀会得到 `Table 2: Table: …` | 工具输出与正文编号职责混淆 | 正文装表时先剥掉工具首行的 `Table: ` 前缀再补编号 | 已生效 |
 | c11 | 技能有完整的工程产物（tools/evals/registry）却说不出「为什么是流水线、为什么是标准档」——成熟度、算子、档位三项在全目录零命中 | v0.1.0 直接从 20 篇语料反推目录，跳过了 creat-skill 的还原与契约两步（先有壳后补理） | 补 `registry/skill-contract.md`（九节契约）+ `registry/profession-map.md`（角色谱系/工件链/裁决权/反例/假设清单），SKILL.md 路由表挂上两条 | 已生效（c11 用例可判；契约 §2 写明不选角色制的理由） |
+| c12 | 中文阅读版跑 `paper_lint` 得 `FAIL ['G1','G5','G6','G7','G9']`，看起来像稿子不合格 | 门禁锚点全为英文句式（`N on <Benchmark>`、`our main contribution includes:`、`In the remainder of this paper`、`(Section N)`、`related work` 章名、`Note that the aforementioned`），语言不匹配被误读成文体缺陷 | 中文版定位为**阅读版**，文首写明「不要对中文版跑门禁」并附实测失败清单；权威稿仍为英文并过 G1–G12。若要中文投稿，须先给 `paper_lint` 加中文句式等价表并按存量优化闭环回归 | 已生效（c12 用例可判；中文版声明已落盘） |
 
-## 用例覆盖映射（c1–c11 → 条目）
+## 用例覆盖映射（c1–c12 → 条目）
 
 | case | 对应条目 | 说明 |
 |---|---|---|
@@ -29,4 +30,5 @@
 | c9 | c9 | 注入脚本静默无变化 |
 | c10 | c10 | 表编号前缀重复 |
 | c11 | c11 | 有壳无契约（成熟度/算子/档位缺失） |
+| c12 | c12 | 中文版门禁语言不匹配被误读为文体缺陷 |
 
