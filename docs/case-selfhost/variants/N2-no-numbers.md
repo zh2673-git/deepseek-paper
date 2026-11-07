@@ -23,7 +23,7 @@ The released protocol and tools are available at https://github.com/zh2673-git/d
 
 We wrote this paper with the very pipeline it describes, which makes the record unusually
 complete and the failure modes unusually visible. Our starting observation was not that models
-write badly; it was that models write plausibly and cite nothing. A control draft of 1,166
+write badly; it was that models write plausibly and cite nothing. A control draft of 958
 characters, produced by the most natural prompt we could write, opened with the three-part
 template that our gates exist to reject, namely a self-praising adjective, an unscoped
 superlative claim, and no number in the same sentence; it placed a related-work chapter as
