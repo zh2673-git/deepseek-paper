@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Four Rules Borrowed from a Journal</title><style>
+:root{--ink:#1a1a1a;--mut:#666;--line:#e2e2e2;--accent:#1c4e80;--bg:#fff;--soft:#f7f8fa}
+*{box-sizing:border-box}
+body{margin:0;background:var(--soft);color:var(--ink);
+ font-family:"-apple-system",BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif;
+ font-size:16px;line-height:1.8;-webkit-font-smoothing:antialiased}
+.page{max-width:860px;margin:0 auto;background:var(--bg);padding:56px 64px 88px;
+ box-shadow:0 1px 3px rgba(0,0,0,.07)}
+h1{font-size:1.85em;line-height:1.35;margin:0 0 .5em;letter-spacing:-.01em}
+h2{font-size:1.32em;margin:2.4em 0 .7em;padding-bottom:.35em;border-bottom:1px solid var(--line)}
+h3{font-size:1.08em;margin:1.8em 0 .55em;color:#222}
+p{margin:.85em 0;text-align:justify}
+strong{font-weight:600}
+code{font-family:ui-monospace,Consolas,monospace;font-size:.88em;background:#f2f3f5;
+ padding:.1em .35em;border-radius:3px;color:#0f4c81}
+hr{border:0;border-top:1px solid var(--line);margin:2.6em 0}
+img{max-width:100%;height:auto;display:block;margin:1.4em auto}
+table{border-collapse:collapse;width:100%;margin:.6em 0 1.6em;font-size:.9em;
+ font-variant-numeric:tabular-nums}
+th,td{border-bottom:1px solid var(--line);padding:.5em .7em;text-align:left;vertical-align:top}
+thead th{border-top:2px solid #333;border-bottom:1.5px solid #333;background:#fafafa;font-weight:600}
+tbody tr:last-child td{border-bottom:2px solid #333}
+ul,ol{margin:.7em 0;padding-left:1.6em}
+li{margin:.3em 0}
+.cap{font-size:.86em;color:var(--mut);text-align:center;margin:-.6em 0 1.8em;line-height:1.6}
+.toc{background:var(--soft);border:1px solid var(--line);border-radius:6px;
+ padding:18px 26px;margin:2em 0 2.6em;font-size:.92em}
+.toc-t{font-weight:600;margin-bottom:.6em;font-size:.95em;color:var(--mut);
+ letter-spacing:.06em;text-transform:uppercase}
+.toc ul{list-style:none;padding-left:0;margin:0}
+.toc li{margin:.25em 0}
+.toc li.l3{padding-left:1.5em;font-size:.95em;color:#444}
+.toc a{color:var(--accent);text-decoration:none}
+.toc a:hover{text-decoration:underline}
+a{color:var(--accent)}
+@media(max-width:760px){.page{padding:28px 20px 56px}}
+@media print{body{background:#fff;font-size:11pt}.page{box-shadow:none;max-width:none;padding:0}
+ .toc{background:#fff}img{page-break-inside:avoid}table{page-break-inside:avoid}}
+</style></head>
+<body><div class="page">
+<h1 id="four-rules-borrowed-from-a-journal-what-a-venues-figure-guide-can-and-cannot-add-to-a-style-gate">Four Rules Borrowed from a Journal: What a Venue's Figure Guide Can and Cannot Add to a Style Gate</h1><nav class="toc"><div class="toc-t">Contents</div><ul><li class="l2"><a href="#abstract">Abstract</a></li><li class="l2"><a href="#1-introduction">1 Introduction</a></li><li class="l3"><a href="#11-summary-of-evaluation-results">1.1 Summary of Evaluation Results</a></li><li class="l2"><a href="#2-approach">2 Approach</a></li><li class="l3"><a href="#21-borrowing-a-written-guide-the-ceiling-of-corpus-induction">2.1 Borrowing a written guide: the ceiling of corpus induction</a></li><li class="l3"><a href="#22-the-admission-test-only-three-kinds-of-rule-survive">2.2 The admission test: only three kinds of rule survive</a></li><li class="l3"><a href="#23-two-gates-statistics-declared-and-a-sample-size-per-figure">2.3 Two gates: statistics declared, and a sample size per figure</a></li><li class="l3"><a href="#24-two-parameters-an-accessible-palette-and-a-resolution-floor">2.4 Two parameters: an accessible palette and a resolution floor</a></li><li class="l2"><a href="#3-implementation">3 Implementation</a></li><li class="l2"><a href="#4-evaluation">4 Evaluation</a></li><li class="l3"><a href="#41-settings">4.1 Settings</a></li><li class="l3"><a href="#42-probe-matrix-and-the-isolation-property">4.2 Probe matrix and the isolation property</a></li><li class="l3"><a href="#43-determinism-why-a-difference-of-one-is-not-noise">4.3 Determinism: why a difference of one is not noise</a></li><li class="l3"><a href="#44-what-the-numbers-do-not-show">4.4 What the numbers do not show</a></li><li class="l2"><a href="#5-discussion">5 Discussion</a></li><li class="l3"><a href="#51-unsuccessful-attempts">5.1 Unsuccessful Attempts</a></li><li class="l3"><a href="#52-dialogue-counting-is-not-binding-and-only-figure-captions-are-read">5.2 Dialogue: counting is not binding, and only figure captions are read</a></li><li class="l2"><a href="#6-conclusion-limitations-and-future-directions">6 Conclusion, Limitations, and Future Directions</a></li><li class="l2"><a href="#references">References</a></li><li class="l2"><a href="#appendix-a-contributions-and-acknowledgments">Appendix A Contributions and Acknowledgments</a></li><li class="l2"><a href="#appendix-b-probe-definitions">Appendix B Probe Definitions</a></li><li class="l2"><a href="#appendix-c-the-38-rejected-requirements">Appendix C The 38 Rejected Requirements</a></li></ul></nav>
+<h2 id="abstract">Abstract</h2>
+<p>A style checker that is induced from a corpus can only demand what the corpus already does, and our
+corpus of twenty DeepSeek reports contains no error bar, no sample size, and no dispersion of any
+kind: across 45,524 bytes of extracted evidence, the counts for error bars, the plus-minus sign,
+<code>n = N</code>, seeds, standard deviation, and confidence intervals are all zero. To further push the
+boundary of what such a checker can enforce, we take the opposite route and borrow from a written
+guide instead of from a corpus, namely the venue author guide that states in prose what a
+twenty-paper corpus leaves implicit. We extract 42 hard requirements from that guide, keep 4, and
+turn them into two gates and two renderer parameters; as committed, the borrowing costs 6,848 git
+blob bytes, or 3.544 percent of the deployment, and 105 added against 8 removed lines across five
+skill files. On eight
+injected probes we measure that the first borrowing gate scores 7 on ProbeMatrix and the second 8 on
+ProbeMatrix out of 8 probes each, that both repair probes flip back to a passing verdict as soon as
+the missing declaration is supplied, and that the single mismatch is a false positive in which the
+abbreviation <code>CI</code> is read as a confidence interval. Two properties of the mechanism are worth
+stating as
+measured rather than asserted: the checker is deterministic, scoring the same draft identically on
+n = 5 repetitions with a standard deviation of 0, and it is count-based rather than binding, so one
+declaration anywhere in the draft excuses an unlimited number of undefined symbols. Because the
+pipeline contains no trainable weights, we report 0 total parameters with 0 activated parameters per
+step; building this case consumed 81 tool calls and 0 GPU hours. The released protocol and tools
+are available at https://github.com/zh2673-git/deepseek-paper.</p>
+<h2 id="1-introduction">1 Introduction</h2>
+<p>We wrote this paper with the pipeline it extends, on a change that the pipeline could not have
+discovered on its own. The observation that started it was a negative one, taken from the first
+case: the twelve gates of the shipped checker were induced by reading twenty technical reports, and
+an induced rule can only be as complete as the corpus it was induced from. When we counted the
+surface features the corpus never exhibits, the count on our own evidence file was zero for every
+statistical marker we looked for, so no amount of additional reading of that corpus would have
+produced a gate about error bars. A corpus tells you what a family of documents does; it is silent
+about what the family fails to do, and that silence is invisible from the inside.</p>
+<p>To close that gap we borrow from a second kind of source, namely a venue author guide that states
+its requirements in prose rather than exhibiting them in examples. The guide we used lists 42 hard
+requirements across eight groups, from figure legends and typography to statistics reporting,
+colour accessibility, table format, and the split between extended data and supplementary
+material. Firstly, we extract those requirements into a single file with the source clause quoted
+verbatim, so that a borrowing can be checked instead of trusted. Secondly, we apply an admission
+test of one question per requirement, namely whether it can be evaluated by a text feature, a data
+field, or a renderer parameter, which rejects layout constraints and judgements no scan can make.
+Furthermore, every adopted rule is implemented twice over, once as a gate over the finished text
+and once as a parameter of the tool that produces the artifact, so that a rule cannot be satisfied
+by editing the text after the fact. Lastly, we build eight probes that deliberately violate the
+adopted rules, because a gate that never fires proves nothing, and we report which probes flip
+back to a clean report when the violation is repaired.</p>
+<p>Our main contribution includes:</p>
+<p>Corpus induction has a ceiling: documenting where it stops</p>
+<ul>
+<li>We measure the ceiling rather than assume it, by counting in the extraction file the statistical
+  markers that no gate in the shipped checker mentions, and reporting that all of them are zero.</li>
+<li>We characterize the ceiling as structural rather than incidental: an induced rule cannot cover a
+  feature the corpus never exhibits, so more corpus does not help and the fix has to come from a
+  different kind of source.</li>
+</ul>
+<p>An admission test: three questions that reject 38 of 42 rules</p>
+<ul>
+<li>We propose a one-line admission test per requirement, namely text feature, data field, or
+  renderer parameter, and show that it rejects whole groups on principle rather than by taste.</li>
+<li>We report what the test does not do, namely that a rule passing it may still be checkable only
+  as a count, which is exactly the weakness the second gate inherits.</li>
+</ul>
+<p>Two gates and two parameters: the borrowing as implemented</p>
+<ul>
+<li>We introduce gates G13 and G14 over plain text, the first demanding that an error symbol be
+  defined anywhere in the draft and the second that a figure caption carrying an error symbol
+  states its sample size.</li>
+<li>We adopt the venue's eight-colour accessible palette verbatim and raise the savefig resolution
+  from 200 to 300 dpi, keeping the accessible palette opt-in so the corpus convention remains the
+  default.</li>
+</ul>
+<p>Probe-based measurement instead of a claim</p>
+<ul>
+<li>We design eight probes derived from a single compliant baseline by one local edit each, so that
+  any change in a verdict is attributable to that edit.</li>
+<li>We report the two ways the borrowing makes the checker worse, namely a false positive on an
+  abbreviation and a blind spot on table captions, rather than reporting only the 7 of 8 and
+  8 of 8 agreement rates.</li>
+</ul>
+<h3 id="11-summary-of-evaluation-results">1.1 Summary of Evaluation Results</h3>
+<p>On the mechanical axis, the borrowing gate for statistics returns the expected verdict on 7 of the
+8 probes and the gate for sample size on 8 of the 8, and because the two gates read disjoint text
+features the counts are independent rather than two readings of one score. Two of the eight probes
+are repair probes, namely a violation followed by the same draft with the missing declaration
+supplied, and both repair probes lift the gate they target from a failing verdict to a passing one,
+which shows the gates are responsive to the thing they claim to check rather than merely quiet; the
+second repair probe returns to 13 of 14 rather than to 14, because the same edit also tripped the
+two-sentence caption floor that the structural group enforces. On the determinism axis, the
+same draft scored five times yields 14 of 14 gates on every repetition with a standard deviation of
+0, so the 7-of-8 figure is not sampling noise but a single reproducible mistake. On the cost axis,
+the four rules occupy 6,848 git blob bytes, or 3.544 percent of the deployment, and the largest
+single addition is 43 lines of prose in the chart specification rather than code. On the regression
+axis, the twelve-case suite remains at 1.00 over the eleven cases that carry a decidable signal,
+because this change adds no case and therefore cannot take credit for one.</p>
+<p>In the remainder of this paper, we first present the mechanism as four stages, arguing that the
+order from measuring the ceiling to admitting a rule to implementing it twice is not negotiable
+(Section 2). We then describe the implementation, the payload, and the two byte conventions that
+must not be mixed (Section 3). Next, we report the probe matrix, the determinism measurement, and
+the four things the numbers do not show (Section 4). Thereafter, we discuss two failed attempts
+with the mechanism behind each (Section 5). Lastly, we conclude, state two limitations with their
+causes, and outline four future directions (Section 6).</p>
+<h2 id="2-approach">2 Approach</h2>
+<p>We organize this section by the order in which the four stages were forced upon us, rather than by
+module boundary, because each stage exists to close a hole that the previous stage left open. The
+first hole is that the corpus cannot see its own omissions; the second is that a written guide
+cannot tell you which of its rules you are able to check; the third is that a rule checked in only
+one place can be satisfied after the fact; and the fourth is that a gate nobody has tried to break
+is a gate whose behaviour is unknown.</p>
+<h3 id="21-borrowing-a-written-guide-the-ceiling-of-corpus-induction">2.1 Borrowing a written guide: the ceiling of corpus induction</h3>
+<p>We design the pipeline around two sources of style knowledge and treat them as complementary
+rather than as a hierarchy. The corpus is the authority on what the family of documents looks like,
+and the guide is the authority on what the venue requires of any document. The first case in this
+project used only the corpus, and its twelve gates are a faithful summary of what twenty reports
+do: paired parameter counts, section navigation with cross-references, no standalone related-work
+chapter, captions of at least two sentences. None of those gates mentions statistics, because the
+reports we read do not report statistics in a way that a text scan can key on.</p>
+<p>The consequence is a ceiling of a specific shape. A rule induced from a corpus of size N can only
+express properties that appear in that corpus, and if a property appears in zero of the twenty
+documents, no additional reading of the same twenty documents can raise it above zero. Table 1
+shows where the adoption lands once the guide is admitted: 42 requirements in eight groups, of
+which one group contributes a statistics rule, one contributes a resolution floor, one contributes
+a palette, and the largest group in the guide, namely the split between extended data and
+supplementary material, contributes nothing because it describes a container rather than a text
+predicate.</p>
+<p class="cap"><strong>Table 1: Distribution of the 42 hard requirements extracted from the venue's figure guide, by group, and whether the group contributed a rule to this pipeline.</strong> Requirements are counted from the extract file and the groups are the extract's own headings, so the column sums to 42 exactly. Adopted counts the rules that became a gate or a renderer parameter; a group with zero adopted rules is not a group we judged unimportant, it is a group whose requirements are either layout constraints or judgements no text scan can make. Because the columns carry different meanings, only the requirement count is a quantity that can be larger or smaller, so no cell is marked as best.</p>
+<table>
+<thead>
+<tr>
+<th>Group</th>
+<th>Requirements</th>
+<th>Adopted</th>
+<th>Why not more</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A figure legend structure</td>
+<td>5</td>
+<td>1</td>
+<td>only the statistics clause is a text feature</td>
+</tr>
+<tr>
+<td>B typography and resolution</td>
+<td>6</td>
+<td>1</td>
+<td>layout except the 300 dpi floor</td>
+</tr>
+<tr>
+<td>C panel labelling</td>
+<td>4</td>
+<td>0</td>
+<td>conflicts with the corpus convention</td>
+</tr>
+<tr>
+<td>D statistics reporting</td>
+<td>5</td>
+<td>1</td>
+<td>needs the sample size as a field</td>
+</tr>
+<tr>
+<td>E colour and accessibility</td>
+<td>5</td>
+<td>1</td>
+<td>a palette is data, the rest is contrast arithmetic</td>
+</tr>
+<tr>
+<td>F tables</td>
+<td>5</td>
+<td>0</td>
+<td>booktabs already enforced by the renderer</td>
+</tr>
+<tr>
+<td>G data and code availability</td>
+<td>6</td>
+<td>0</td>
+<td>section placement, not a text predicate</td>
+</tr>
+<tr>
+<td>H extended data split</td>
+<td>6</td>
+<td>0</td>
+<td>a venue-specific container</td>
+</tr>
+</tbody>
+</table>
+<p>The pattern in that table is not a ranking of importance, and reading it as one would invert the
+argument of this paper. The two groups with the most requirements in the guide contribute nothing,
+not because the venue values them less but because their requirements describe where a section goes
+and what a container is called, and a scanner cannot see either. What the table does show is that
+adoption depends on the shape of the requirement rather than on the prestige of the venue that
+stated it, which is why we treat the admission test as the load-bearing part of the procedure.</p>
+<p>Note that the aforementioned costs include only the measurement of the extraction file and the
+released bytes of the borrowing; the cost of reading the guide's web pages is not included, because
+that reading was done once and its artefact is the 16,222-byte extract that ships in the project.</p>
+<h3 id="22-the-admission-test-only-three-kinds-of-rule-survive">2.2 The admission test: only three kinds of rule survive</h3>
+<p>We propose a single question per requirement, namely whether it can be evaluated from a text
+feature, a data field, or a renderer parameter. The test is deliberately narrow, and its narrowness
+is the point: a gate that a scan cannot evaluate becomes a line of prose that every draft satisfies,
+which is worse than no rule at all because it inflates the reported gate count without constraining
+anything. Applied to the 42 requirements, the test admits four and rejects 38, and the reasons for
+rejection fall into three classes that are worth separating.</p>
+<p>The first class is layout, and it contains the requirements a technical report cannot use: a
+column width of 89 or 183 millimetres, text between 5 and 7 points, line weights between 0.25 and
+1 point, panel labels at 8 points upright. The layout of a technical report is decided by the
+renderer that emits the HTML or the DOCX, so writing these numbers into the Markdown source would
+add metadata that no reader sees and no tool consumes. The second class is judgement: a legend of
+fewer than 300 words, a methods section that does not repeat method detail, a statement of whether
+measurements come from distinct samples. Each is a real requirement and each requires understanding
+the sentence rather than matching it. The third class is conflict, and it has exactly one member: the
+guide wants panel labels as lowercase upright letters without brackets, while the corpus convention
+is <code>(a)</code> and <code>(b)</code>, and the body text refers to <code>Subfigure (a)</code> in the same form. We keep the corpus
+form and record the refusal, so that a later reader does not mistake the omission for an oversight.</p>
+<p>The cost of the test is visible in what it lets through. A requirement can pass the test and still
+be checkable in two very different strengths, namely a count of occurrences or a binding of each
+occurrence to its justification, and the unbound strength is exactly what we shipped: Section 5.2
+measures that weakness. Table 3 lists
+the four rules that survived, with the source clause quoted rather than paraphrased, since the
+purpose of quoting is to let a reader disagree with our reading of the clause.</p>
+<p class="cap"><strong>Table 3: The four rules adopted from the venue guide, the clause they come from, what they became in the pipeline, and what each costs.</strong> The source clause column quotes the guide verbatim, so a reader can check the borrowing rather than trust the summary. Cost names the measured or expected failure mode of each rule: two rules introduce a new way to fail a compliant draft, one introduces a false positive on an abbreviation, and one changes an output parameter whose effect is visible in the file metadata. Because the columns are text and the only quantity is the count of rules, no cell is marked as best.</p>
+<table>
+<thead>
+<tr>
+<th>Rule</th>
+<th>Source clause (abridged)</th>
+<th>What it became</th>
+<th>Cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>R1 error bars must be defined</td>
+<td>All error bars and statistics must be defined in the figure legend.</td>
+<td>G13: an error symbol without a definition anywhere in the text fails</td>
+<td>a definition anywhere excuses every symbol, so the check is a count not a binding</td>
+</tr>
+<tr>
+<td>R2 exact sample size per group</td>
+<td>The exact sample size (n) for each experimental group, given as a discrete number.</td>
+<td>G14: a figure caption carrying an error symbol without n = N fails</td>
+<td>reads figure captions only, so a table caption escapes it</td>
+</tr>
+<tr>
+<td>R3 accessible colour palette</td>
+<td>An accessible colour palette to be used (Wong, Nature Methods 8, 441).</td>
+<td>paper_figure accepts style.palette = colorblind and emits the eight Wong hex values</td>
+<td>opt-in rather than default, because the corpus convention is a grey-blue ramp</td>
+</tr>
+<tr>
+<td>R4 300 dpi floor</td>
+<td>Photographic images at a minimum of 300 dpi at the maximum usable size.</td>
+<td>paper_figure default savefig dpi raised from 200 to 300</td>
+<td>the rcParams figure dpi stays at 200, so the two settings disagree in the source</td>
+</tr>
+</tbody>
+</table>
+<h3 id="23-two-gates-statistics-declared-and-a-sample-size-per-figure">2.3 Two gates: statistics declared, and a sample size per figure</h3>
+<p>We introduce two gates over plain text, both of which fire only when the draft has chosen to report
+something that carries uncertainty. The first, G13, is triggered by the presence of an error symbol
+anywhere in the draft, which for us means the plus-minus sign, the phrase error bar, the
+abbreviations for standard deviation and standard error, a confidence interval, or an explicit
+percentage interval; when such a symbol is present the gate requires that the draft also contain a
+declaration of what the symbol denotes, which may be a named dispersion, a confidence level, a
+count of seeds, or an explicit <code>n = N</code>. The second, G14, reads figure captions only: if a caption
+contains an error symbol, it must also contain a sample size or a repetition count, so that a
+reader who looks at the legend and nowhere else still learns how many observations produced the
+bar.</p>
+<p>The design choice worth defending is that both gates are conditional rather than unconditional. A
+gate that demanded an error bar in every draft would fire on the first case in this project, which
+reports gate counts and byte counts and has no dispersion to report, so the reasonable value of
+that dispersion is zero and the honest presentation is a single number. By conditioning on the
+presence of the symbol, we avoid the failure mode in which a rule about statistics forces every
+author to invent a variance in order to satisfy it. The price is that a draft reporting no
+statistics at all passes both gates trivially, which is why Section 4 reports the probe that
+establishes this and why the probes exist at all.</p>
+<h3 id="24-two-parameters-an-accessible-palette-and-a-resolution-floor">2.4 Two parameters: an accessible palette and a resolution floor</h3>
+<p>We adopt the venue's accessible palette verbatim, eight hexadecimal values attributed to a named
+paper on colour blindness, and expose it as an opt-in switch on the figure renderer rather than as
+a new default. The reasoning is a precedence rule we state explicitly, namely that style
+consistency outranks external accessibility guidance when the two conflict, because a report in a
+family that uses a grey-blue ramp and suddenly adopts an eight-colour palette stops reading as a
+member of that family. The switch exists for the cases where accessibility outranks style, which we
+take to be submission to a journal, printing in greyscale, and review by a reader with a colour
+vision deficiency.</p>
+<p>We also raise the default savefig resolution from 200 to 300 dots per inch, which is the floor the
+guide states for photographic material. This one is unconditional, because resolution is invisible
+to a reader of the rendered page and costs only file size. The change is a single default value, and
+the measured effect is exactly what the metadata says: both palettes now emit a PNG whose recorded
+resolution is 299.9994 in both axes, the small shortfall being the float rounding of dots per inch
+converted from dots per centimetre. What the change did not do is equally worth reporting, and
+Section 5.2 takes it up: the same file still sets the interactive figure resolution to 200, so the
+two settings now disagree, and a reader of the source has no way to tell which one governs the
+output.</p>
+<h2 id="3-implementation">3 Implementation</h2>
+<p>The borrowing ships as an edit to an existing skill rather than as a new one: two gates in the text
+checker, a palette switch and a resolution default in the figure renderer, 43 lines in the chart
+specification recording what was borrowed and what was refused, a rubric line, and three mentions
+in the protocol document. Table 4 gives the per-file accounting, measured in git blob bytes so that
+the numbers can be recomputed from the commit rather than from a working directory whose line
+endings depend on the platform.</p>
+<p class="cap"><strong>Table 4: Payload and change surface of the borrowing commit, measured in git blob bytes with line endings normalised to LF.</strong> The before column is the parent commit and the after column is the borrowing commit, so the delta is exactly what the four rules cost in released bytes and the five per-file deltas sum to the whole-deployment delta. A sixth file was committed in the same change and removed afterwards, which is why the current head is 37 bytes smaller than the after column and why the whole-deployment delta is one file short of the commit's file count. Two byte figures appear in this paper and they are not interchangeable: git blob bytes are reported here, while the working tree on Windows is larger because of CRLF line endings.</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Lines added</th>
+<th>Lines removed</th>
+<th>Bytes before</th>
+<th>Bytes after</th>
+<th>Delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>tools/paper_lint.py</td>
+<td>36</td>
+<td>0</td>
+<td>10299</td>
+<td>12805</td>
+<td>2506</td>
+</tr>
+<tr>
+<td>references/05-图表规范.md</td>
+<td>43</td>
+<td>0</td>
+<td>6377</td>
+<td>9400</td>
+<td>3023</td>
+</tr>
+<tr>
+<td>tools/paper_figure.py</td>
+<td>21</td>
+<td>3</td>
+<td>6159</td>
+<td>7357</td>
+<td>1198</td>
+</tr>
+<tr>
+<td>evals/rubric.md</td>
+<td>2</td>
+<td>2</td>
+<td>1677</td>
+<td>1761</td>
+<td>84</td>
+</tr>
+<tr>
+<td>SKILL.md</td>
+<td>3</td>
+<td>3</td>
+<td>6896</td>
+<td>6896</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Whole deployment</td>
+<td>105</td>
+<td>8</td>
+<td>193229</td>
+<td>200077</td>
+<td>6848</td>
+</tr>
+</tbody>
+</table>
+<p>Two properties of the payload are worth naming because they are easy to misread. The first is that
+the largest single addition is prose rather than code: 43 lines of specification against 36 lines
+of checker, which reflects that the expensive part of a borrowed rule is the justification for
+borrowing it, not the regular expression that implements it. The second is that one file grew by 84
+bytes while its line count did not change, which is what a two-for-two edit looks like when the
+replacement text is longer; a reader comparing line counts alone would conclude that nothing
+happened.</p>
+<p>The five tools still speak one protocol, namely JSON on standard input under an <code>args</code> key and JSON
+on standard output carrying a status flag, and the two new gates added no dependency because they
+are regular expressions over the text the checker already reads. The deployment is 28 files and
+200,823 bytes in the working tree, and the repository including documentation is 61 files and
+698,126 bytes; these two figures are reported separately because the first is what a runtime loads
+and the second is what a reader clones, and conflating them has already produced one wrong number
+in this project's history.</p>
+<p>Note that the aforementioned costs include only the released bytes of the skill and the tool calls
+of the authoring session, which numbered 81 and are broken down as 63 shell invocations, 9 file
+writes, 5 searches, 3 reads, and 1 edit; they exclude the cost of reading the venue guide and of the
+first case's construction, which was reported separately at 2.04M tokens.</p>
+<h2 id="4-evaluation">4 Evaluation</h2>
+<h3 id="41-settings">4.1 Settings</h3>
+<p>We use one baseline and eight probes. The baseline is the compliant draft of the first case, a
+25,955-character method paper that satisfies all fourteen gates as shipped; we reuse it rather than
+write a new baseline, because a probe is only interpretable against a draft whose clean report has
+already been established. Each probe is the baseline with one local edit, so a difference in a
+verdict is attributable to that edit and to nothing else. The edits are chosen to cover four
+situations rather than to sample a distribution: a violation with no repair, a violation with its
+repair, a violation in a place the gate is not looking, and a word that looks like a violation but
+is not.</p>
+<p>Every probe is scored twice, once without the evidence ledger and once with it, because the two
+scorings answer different questions. The first tells us what the two borrowing gates do in
+isolation; the second tells us whether the borrowed rules disturb the twelve gates that were
+already there. All scorings use one checker at one version, and we repeat the baseline scoring five
+times to establish that the checker is deterministic before drawing any conclusion from a
+difference of one gate.</p>
+<h3 id="42-probe-matrix-and-the-isolation-property">4.2 Probe matrix and the isolation property</h3>
+<p>Table 2 reports every probe with its two verdicts, the verdict it was built to elicit, and its
+fourteen-gate score under the ledger. Three features of the matrix carry the argument.</p>
+<p class="cap"><strong>Table 2: Verdict of the two borrowing gates on eight injected probes derived from one compliant baseline draft.</strong> Each probe is the same 25,955-character baseline with one local edit, so any change in a verdict is attributable to that edit. Expected is the verdict the probe was built to elicit and Match records whether the gate returned it; the last two columns re-score each probe with the evidence ledger supplied, so they show how many of the fourteen gates the draft satisfies rather than how many of the two new ones. All probes are scored by the same checker at the same version, and a difference of one gate is at the same level as a difference of zero.</p>
+<table>
+<thead>
+<tr>
+<th>Probe</th>
+<th>Injected edit</th>
+<th>G13</th>
+<th>G14</th>
+<th>Expected</th>
+<th>Match</th>
+<th>Of 14</th>
+<th>Failing gates</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P0</td>
+<td>none, compliant baseline</td>
+<td>pass</td>
+<td>pass</td>
+<td>pass</td>
+<td>2 of 2</td>
+<td>14</td>
+<td>none</td>
+</tr>
+<tr>
+<td>P1</td>
+<td>error bar, no definition</td>
+<td>fail</td>
+<td>pass</td>
+<td>fail</td>
+<td>2 of 2</td>
+<td>13</td>
+<td>G13</td>
+</tr>
+<tr>
+<td>P2</td>
+<td>P1 plus s.d. and n = 5</td>
+<td>pass</td>
+<td>pass</td>
+<td>pass</td>
+<td>2 of 2</td>
+<td>14</td>
+<td>none</td>
+</tr>
+<tr>
+<td>P3</td>
+<td>caption gains an error bar</td>
+<td>fail</td>
+<td>fail</td>
+<td>fail</td>
+<td>2 of 2</td>
+<td>12</td>
+<td>G13, G14</td>
+</tr>
+<tr>
+<td>P4</td>
+<td>P3 plus n = 5 in caption</td>
+<td>pass</td>
+<td>pass</td>
+<td>pass</td>
+<td>2 of 2</td>
+<td>14</td>
+<td>none</td>
+</tr>
+<tr>
+<td>P5</td>
+<td>two bars, only the first defined</td>
+<td>pass</td>
+<td>pass</td>
+<td>pass</td>
+<td>2 of 2</td>
+<td>14</td>
+<td>none</td>
+</tr>
+<tr>
+<td>P6</td>
+<td>table caption gains an error bar</td>
+<td>fail</td>
+<td>pass</td>
+<td>fail</td>
+<td>2 of 2</td>
+<td>13</td>
+<td>G13</td>
+</tr>
+<tr>
+<td>P7</td>
+<td>CI used to mean continuous integration</td>
+<td>fail</td>
+<td>pass</td>
+<td>pass</td>
+<td>1 of 2</td>
+<td>13</td>
+<td>G13</td>
+</tr>
+</tbody>
+</table>
+<p>The first feature is isolation. Three probes lose exactly one gate, one probe loses two, and no
+probe loses a gate that the injected edit did not target, which is the property that lets a single
+number in the table be read as a statement about a single rule. This is the same isolation the
+first case demonstrated for the original twelve gates, and it survives the addition, which is not
+guaranteed: a new gate that keyed on a substring also used by an old gate would couple the two and
+make every subsequent count ambiguous.</p>
+<p>The second feature is responsiveness, and it is the reason two probes are repair pairs. P2 is P1
+with a declaration added and it returns to 14; P4 is P3 with a sample size inside the caption and it
+returns to 13, one gate short of clean because P3's replacement caption is a single sentence and
+therefore trips the two-sentence caption floor that the structural group enforces. A gate that
+passes a repaired draft proves only that it is not stuck; a pair that flips in both directions
+proves that the gate is reading the declaration rather than the ambient length of the draft, and
+the fact that the repair is scored by a different gate than the one it targets is what keeps the
+two effects separate.</p>
+<p>The third feature is the price, and it is concentrated in one row. P7 inserts a sentence about a
+continuous-integration pipeline, an innocent statement that any engineering report might contain,
+and G13 fails it because it matches the two-letter token CI case-insensitively as a confidence
+interval. The probe is the only one where the gate disagrees with its author, and it is a false
+positive rather than a near miss: the verdict is wrong, and it is wrong about a word that has
+nothing to do with statistics. Figure 1 reduces the matrix to the two agreement counts to make the
+asymmetry between the gates legible.</p>
+<p class="cap"><strong>Figure 1: Agreement between the verdict of each borrowing gate and the verdict its author expected, over n = 8 injected probes.</strong> Bars count probes whose verdict matched; G13 matches on 7 of 8 and G14 on 8 of 8, with the single mismatch being a false positive in which the abbreviation CI is read as a confidence interval although the probe uses it to mean continuous integration. Because the two gates read disjoint text features, the counts are independent rather than two readings of one score, and a difference of one probe is at the same level as a difference of zero.</p>
+<p><img alt="Agreement between gate verdicts and expected verdicts" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABdAAAANmCAYAAAD6iKnDAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90bGliIHZlcnNpb24zLjcuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8pXeV/AAAACXBIWXMAAC4jAAAuIwF4pT92AADInElEQVR4nOz9B5hU5fk//t8Li3QURSwgRbCBFUUFQxFr7MaWYmwkxpYYW8wndk3TFI3GGg1q1IiaGEuMvWHXGFERUBFFBAWp0tv+rud8/zv/BRfYZcvszrxe13WuOWfmnGfvbbNn3/PMfUrKysrKooDMmDEjfvOb38S1114b8+fPz91fUlKSW2/atGlsuumm0aVLl9hoo42ibdu20aJFi1iyZEl2zNSpU2PixInxwQcfxOzZs5cbv+KXq2/fvvHLX/4y9tprr3r67AAAAAAAqC8lhRagl5s2bVoWot9www3x+eefV7pPxVC9MuVfmrRf+XqTJk3im9/8ZpxxxhkxZMiQOqgcAAAAAICGoGAD9HJLly6NRx99NO66667sNs1QX12IvuKXJO2z0047xWGHHRbf+973olOnTnVeNwAAAAAA+VXwAXpFy5Yti9dffz1eeeWVePPNN+PDDz+MCRMmxMyZM7PWLc2aNYvWrVvHhhtuGN27d4+tt946a9MycODA6NChQ77LBwAAAACgHhVVgA4AAAAAAFXVpMp7AgAAAABAERGgAwAAAABAJQToAAAAAABQCQE6AAAAAABUQoAOAAAAAACVEKADAAAAAEAlBOgAAAAAAFAJAToAAAAAAFRCgA4AAAAAAJUQoAMAAAAAQCUE6AAAAAAAUAkBOgAAAAAAVEKADgAAAAAAlRCgAwAAAABAJQToAAAAAABQrAF606ZNs2WLLbao0Tg77LBDNk5paWmt1QYAAAAAQMNUFElwWVnZcre1MRYAAAAAAIWtKGagJyUlJfkuAQAAAACARqRoAvTaUD77XBgPAAAAAFD4BOjVMGPGjOy2TZs2+S4FAAAAAIA6JkCvovHjx8enn36azT7fcMMN810OAAAAAAB1rKAuIjp79uyYOXPmSh9fsmRJFoJX9UKgy5Yti1mzZsW7774bV1xxRe7+HXbYoVbqBQAAAACg4SqoAP3KK6+MSy+9tNLHUmj+ySefRLdu3Wr8cY488sgaj1GMFi5cGBMnTsxtd+7cOZo3b57XmgAAAAAAiiJALw/KU5uVymaZV3Xm+YoqjvfNb34zDj300BrXWYxSeH7UUUfltocPHx49evTIa00AAAAAAEUToNckKF/VeFtuuWWccMIJccYZZ9Tq2AAUpgmTpsT8BYuiZYu1osvGHfNdDgAABcg5J0DdK6gA/bjjjovBgwd/LfweMmRINot84403jjvuuKPK4zVr1izatGmTtX1p165dHVQMAAAAAEBDVVABeteuXbNlZVq2bBmDBg2q15oAAAAAAGicCipAX5mBAwdmM9A7deqU71KAAjFv3ry4//7747nnnouPPvoovvrqq+yiuBtuuGFst9128a1vfSu22mqrfJcJAEAj57wTqArPFVB3Sspqu2E4rMS4ceNcRJSC8OGHH8bpp58eX3zxxUr3SS/apbZSp556ar3WRsOhHyUAUFPOO1kd55wkniugbhXFDHSA2nxVv/zEpGnTpnH44YfH/vvvHxtttFHMmjUr/ve//8XNN9+cPT5s2LDYZJNN4qCDDsp32QAANDLOO4Gq8FwBdU+ADlANjz/+eO5V/ZNPPjl7Bb9c+/bts4sO9+nTJ44++uiYP39+3H333U5OAACoNuedQFV4roC61ySKwD333BObbrppthx55JFrNEY6rnyMBx54oNZrBBqHsWPH5tYPOOCASvdJFzPedttts/VPPvmk3moDAKBwOO8EqsJzBdS9ogjQb7jhhvj444+zJ4nvfe97azRGeqWufIzrr7++1msEGoe11lpruR5yK9OkSZPcK/4AAFBdzjuBqvBcAXWv4AP0OXPmxAsvvJA9iay33norfTVudVL/qI4dO0a65mq6onF62wtQfCpetfyxxx6rdJ/JkyfH22+/na3vtttu9VYbAACFw3knUBWeK6DuFXyA/t///jeWLFmSrQ8ZMiS7oMKaSMftueee2fqiRYuycYHis9dee0XPnj2z9WuuuSZ7R0p6Z8qCBQti6tSpWf+5U045JebOnRvdu3fPetABAEB1Oe8EqsJzBdS9gr+I6Pvvv59b32GHHWo0VuoXddddd+XG/cY3vlHj+oDGJb2Ylk5Izj///Hj11VfjlltuyZaK1l9//Tj++OOzi7e0bt06b7UCANB4Oe8EqsJzBdS9gp+BPn369Nx6asFSE+kJp7JxgeKSesb98pe/jEMOOaTSx7/66quYNm1a1kIKAADW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7LRl53yXUPAKpoVLalGSgu306aTbpUuXVvpYbVhx/PqSLgL63e9+N7d98MEHZ/e1bNmy0v0nTJgQQ4YMyQL1pLS0NF577bXYYYcd8tYD/bzzzsttDx8+PHr06BGF7A8335fvEoBadtYPDq/SfhMmTclmAaUXCvPxFjMAiodzTije887qnnNuf8wfaqk6oKF46/az8l1CwSuYGejJqgLyxv46QZrx/rOf/Sy3vdFGG8Wdd9650vA86dKlSxZS9+3bN/v80xgXXnhhPPTQQzWuJ12wNC3V7YEOAAAAANBYFEyAPmzYsDV6rLEYMWJENoO73PHHH59dJHR1dtxxx+jXr1+89NJL2fZjjz0W8+bNi1atWtVpvQAAAAAAjV3BBOjHHnvsGj3WWLz99tvLbe+0005VPjbtWx6gpx7pqSf69ttvX+s1AgAAAAAUkib5LoCqmTt37nLbbdq0qfKxK85Unz9/fq3VBQAAAABQqATojUT79u2X2/7888+rfOzkyZOX215vvfVqrS4AAAAAgEIlQG8kevbsudz2E088UaXjli5dGk8//XRuu3nz5rHJJpvUen0AAAAAAIVGgN5IDBgwYLkLf959991f64temT//+c8xYcKE3PagQYOiZcuWdVYnAAAAAEChEKA3Ei1atIhTTjklt50uBrrffvvlLg66orKysrjuuuvi7LPPXu7+FbcBAAAAAKhcaRSIIUOG1NvHKikpiaeeeirq2/nnnx+PPPJIvPfee9n2Z599FrvttlsMHjw4+/w7deqUBevjxo2LBx98MMaOHbvc8ccdd1zstdde9V43AAAAAEBjVDAB+rPPPpsF23Utzeyuj49TmbXXXjsef/zx+Na3vhWvvfbacp97WlZl6NChccMNN9RDlQAAAAAAhaGgWrikcLuqy+qOW9nj+ZZmmae2Lddff31ss802q9y3SZMmsc8++8Rjjz0WN998c5SWFszrJQAAAAAAda5gEtVjjz12tfvMmzcv/vGPfywXhq+zzjqx9dZbx/rrrx+tW7eOuXPnxtSpU+Pdd9+NmTNnZvukGecpjD7ssMMaxAU4mzZtGieddFK2TJw4Md54442sncusWbOyx9Ln1KNHj+jbt282ax0AAAAAgCIO0IcNG7bKx8eMGROHH354LFu2LAvDUz/wE088MXbZZZeVHpPapNx4441x++23Z8eNGjUq7rvvvthiiy2ioejcuXO2AAAAAABQuwqqhcvKTJs2Lfbdd98YPXp0NtN8xIgRccstt6wyPE923nnnbL+0f4cOHbKLd6Zxpk+fXm+1AwAAAACQH0URoJ9++ukxYcKEbOZ5auHSr1+/ah2/6667ZselVi5pnJ/+9Kd1VisAAAAAAA1DwQfoM2bMyIXfe++9d3zjG99Yo3HScWn2eeqdntq4lPdHBwAAAACgMBV8gP7888/HwoULs/U99tijRmMNGTIku03jpXEBAAAAAChcBR+gT5w4Mbfevn37Go21zjrr5NY//fTTGo0FAAAAAEDDVvAB+rx582ot9K4YxlccFwAAAACAwlPwAfrGG2+cW7///vtrNFbF4yuOCwAAAABA4Sn4AH233XbLrb/99ttx9dVXr9E411xzTYwcObLScQEAAAAAKDwFH6B369YtBg0alK2XlZXFmWeeGb/85S9jyZIlVTo+7ffrX/86zjjjjCgpKcmWNF4aFwAAAACAwlXwAXpy7bXXxlprrZWF38uWLYuLLrooNt9887jkkkvilVdeiTlz5iy3f9pO91966aWxxRZbxAUXXJAdlwL4NE4aDwAAAACAwlYaRaBXr15x1113xXe+851YvHhxdt/HH3+cBeRpSZo3bx4tW7aM+fPnx8KFC3PHptA8Be9JCs/TOFtttVWePhMAAAAAAOpLUcxATw499NB4/PHHY9NNN10uFE/raVmwYEHMmDEjuy2/L0n7pfWePXvGE088kY0DAAAAAEDhK5oAPRk4cGC8++67ceWVV2az0stD8pVJj6f9rrrqqnjnnXdiwIAB9VYrAAAAAAD5VRQtXCpKrVpOP/30bBk/fny89tprMWbMmGz2+dy5c6N169bRvn37rPf5LrvsEt27d893yQAAAAAA5EHRBegVpXBcQA4AAAAAQFG2cEl9y4cMGZItRx99dL7LAQAAAACgkSj4AP3NN9+MZ599Np577rnYeOON810OAAAAAACNRJNi6HlermfPnnmtBQAAAACAxqPgA/SNNtoot15WVpbXWgAAAAAAaDwKPkDfZpttcusffvhhXmsBAAAAAKDxKPgAvVevXlmInmaf/+tf/4ply5bluyQAAAAAABqBgg/QkwsvvDC7/eijj+I3v/lNvssBAAAAAKARKIoA/bDDDotTTz01m4WewvTzzjsvFi1alO+yAAAAAABowEqjCEyYMCHOOeecKC0tjT/96U/x29/+NoYNGxbf/va3o3///tGzZ89o165d9nhVdenSpU5rBgAAAAAgv4oiQO/WrVuUlJRk6+k2zUT//PPPszA9LdWVxliyZEkdVAoAAAAAQENRFAH6isrD9CSF6QAAAAAAULQBuqAcAAAAAIDqKIoA/Zlnnsl3CQBAETnxxBPjzTffrNYxb7zxRp3VAwAAwJopigB90KBB+S4BAGCl0gXNAQAAaHiKIkAHAKhPV199dSxbtmyV+zz44IPx+9//Pls/6KCD6qkyAAAAqkOADgBQy1q0aLHafR5//PHstrS0NL75zW/WQ1UAAABUV5NqHwEAQI1MmDAh3n777Wx9wIAB0b59+3yXBAAAQCWKfgb6+++/HxMnTowZM2bEvHnzom3btnHIIYfkuywAoIA99NBDufUDDzwwr7UAAACwckUZoD/zzDNx/fXXx1NPPRUzZ85c7rEePXp8LUBfuHBhnH322bF06dJo2rRpXHnlldnbrQEAqiv1Rv/3v/+dra+33nrRv3//fJcEAADAShRVCpxmmp9wwglZcJ6UlZVltyUlJbn1yjRv3jw79oEHHsj2HTJkSBx66KH1VjcAUDheffXVmDJlSra+3377eVEeAACgASuaHuijR4+OHXfcMQvPU1heMTBP6ykYX5Uf/vCHufXhw4fXaa0AQOF68MEHc+vatwAAADRsRRGgz5o1K/baa6+YOnVq7r404ysF4ePHj4+5c+euNkTfc889s/7oab+nn366nioHAArJ7Nmz47nnnsvWt95669h0003zXRIAAACrUBTvGb744otj0qRJWUDeunXruOuuu+KAAw6o1hhrrbVW9OvXLx5//PGYNm1afPDBB7HZZpvVWc0AQOF57LHHYtGiRdm62ecAAAANX8HPQE//pN5yyy257b///e/VDs/Lbbfddsu1hAEAqI6HHnood32VffbZJ9/lAAAAUOwB+ogRI2LOnDnZ7PNBgwbF/vvvv8ZjderUKbeeLioKAFBV48aNi/feey9bTxckb9OmTb5LAgAAoNgD9I8++ii3vu+++9ZorLXXXju3/tVXX9VoLACgOGefJ9q3AAAANA4FH6CnfuXlOnbsWKOxFi5cmFtv2rRpjcYCAIrHkiVL4j//+U+2vtFGG0Xfvn3zXRIAAABVUPABert27XLrs2bNqtFY6UKk5Tp06FCjsQCA4vHSSy/lXtRP12JJreUAAABo+Ao+QN9www1z62+88UaN//kt17Vr1xqNBQAUX/uWFJyv6cXMAQAAqH8FH6D3798/+2e1rKws++d1xowZazTOJ598Es8880y23rx582xcAIDVmTlzZrzwwgvZ+o477rjcRckBAABo2IpiBnr6Z7X8wp8//vGP12ic0047LZYuXZqF8XvvvXcWogMArE7qfb548eJs3cVDAQAAGpeCD9CT8847L7f+97//PY499tiYO3dulY5N//CecMIJ8e9//7vS8QAAqtK+pXXr1rHHHnvkuxwAAACqoTSKwMEHHxz77bdfPPLII9kM8jvuuCObDfaDH/wg60Paq1evrx3z0UcfZf/wXnXVVTFhwoTsvnTs0KFDo2/fvnn4LACAxuiuu+7KdwkAAACsoaII0JPhw4fH4MGD47///W8WhH/55Zdx+eWXZ0tFH3/8cTZDbMGCBdl26p2e9k8GDBgQ1113XV7qBwAAAACgfhVFC5ckheLPPfdc1r4lheLl0nrFkDz1OZ8/f/7X9jn++OPjsccei9LSonnNAQAAAACgqBVNgJ60atUqhg0bFs8++2zWuqU8NK8YpFcMzpPUq/Spp56KW265xYVDAQAAAACKSFFOpx44cGC2zJ49O1566aUYOXJkTJs2LWbOnJmF7B06dIgtt9wya/mS1gEAAAAAKD5FGaCXa9euXey7777ZAgD5tP0xf8h3CUAte+v2s/JdAgAAUENF1cIFAAAAAACqSoAOAAAAAADFGqB369Ytzj///Bg7dmy+SwEAAAAAoJEoigB9woQJ8Zvf/CZ69eoVu+yyS1x77bXZRUMBAAAAAKCoA/RyZWVl8cYbb8RPfvKT2HjjjeOQQw6Jf/7zn7F48eJ8lwYAAAAAQANTFAH6wQcfHM2aNcuF6EkKzR966KE44ogjYsMNN4xTTjklXn755TxXCgAAAABAQ1EUAfr9998fkydPzlq39OvXLxeip9u0zJgxI2688cb4xje+EZtttllcdtllMX78+HyXDQAAAABAHhVFgJ60b98+Tj755HjxxRfjww8/jAsvvDB69Oix3D4pTB83blxcfPHF0bNnzxg4cGDcfPPNMXv27LzVDQAAAABAfhRNgF7RpptumoXkH3zwQRao/+hHP8oC9hXD9PLHUouXo446Kh5+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zU5b1uzcE6rKOScU73mnc07AOWfdK/gAPV38c2UhdHV98cUXufX11lsv6lNqf7Ki/v37x/nnn7/SY9LFRNPFRVO/9PLw/09/+lOtBOinnHJKdoHS6vZAP++883LbG62/bl7edlGf7n3k+XyXANSys3Y8vMpvo0szAdI/MlV5rjvo53+rheqAhuSt28/KdwkUCeecULznnc45Aeecda/gA/QNNtggt77ixTarq3wmd23MZq+uFIav6Cc/+UnW231VevTokbWu+ec//5ltf/bZZ9lM9F69atYnsWPHjtlS0xcBAAAAAAAaqiZR4NLFM8s9+OCDMX/+/DVuBfPEE09k66WlpbHbbrtFfUoXB13R7rtX7eIfK+735ptv1lpdAAAAAACFquAD9G7dumUtTMrKyrIQfFUtT1bl5z//eSxcuDCb8T1gwIBo06ZN1Kc0k7yi5s2bV3kGeNeuXVfaFx4AAAAAgCIN0JOKPb+vuuqquPDCC6t1/CWXXBLDhg3LbZ977rlR31KAnkLzNWmHsuK+CxYsqNXaAAAAAAAKUVEE6Mcdd1zWyiXNQk/Lr371q9h6663jpptuynqCVyaFzA888EB2oc5LL700uy/NPj/ggANir732qufPIKJp06axzTbb5LZnz56duzDo6kyfPn257fq+ACoAAAAAQGNUFAF6Cr4feuih6N69e+6+dCHNk08+Obp06RLrrLNO7v4UqG+11VbZfd/61reWu3Bouv/OO++MfEkXAy2XXgio6kVR//e//y23vemmm9Z6bQAAAAAAhaYoAvQk9Qt/8cUXY8iQIVn4nEL1JK2n2dzl22nm+dixY2PRokW5x9Oy5557xvPPP1/vvc8rOvzww5fbvueee1Z7zLJly+K+++7Lba+11lr1fgFUAAAAAIDGqGgC9GTDDTeMJ554Im699dasHUoKxsuVB+Ur3rfZZpvFLbfcEo8++misu+66kU9pBvx+++2X27722mvjo48+WuUxf/7zn2PcuHG57SOPPDJatmxZp3UCAAAAABSC0igyaab5Mcccky2jRo2KESNGxMiRI2PatGkxc+bMaNWqVXTo0CG23HLL2H333aNPnz652ekNwRVXXBGPPfZYLF26NObMmRN777131p4mhesrSi8UnHXWWctdTPSCCy6o54oBAAAAABqnogvQK+rdu3e2NCap3jSrPPVvT9Ls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I46IDTfccI3HWm+99XLrX375Za3UBwAAAABAw1TwAfrkyZNz63369KnRWC1btsytz507t0ZjAQAAAADQsBV8gF7xYp8tWrSo0VizZ8/Orbdt27ZGYwEAAAAA0LAVfIDesWPH3Ppnn31Wo7HGjh2bW19//fVrNBYAAAAAAA1bwQfo3bp1y60/9dRTNRrrySefzK1vu+22NRoLAAAAAICGreAD9N122y1atWqVXUh0xIgR8dprr63ROA8//HC8//772Xq6EGmvXr1quVIAAAAAABqSgg/Q11prrTjkkEOy9RSiH3XUUctdWLQqJk6cGD/60Y+y9ZKSkjj++OPrpFYAAAAAABqOgg/Qk1/+8pdZkJ7C708++ST69OkT99xzT5WOfeyxx6J///650L1du3Zx1lln1XHFAAAAAADkW2kUgdQH/U9/+lOcfPLJWYj+xRdfxHe+850sCN93332jd+/euX3nz58fw4cPj1GjRsVDDz0Ub7/9djZzPWnSpEncdttt0b59+zx+NgAAAAAA1IeiCNCT1IJl5syZcd5552XbKRT/7LPP4q9//Wtun3TfpEmT4rvf/e5y9yVNmzaNq666Kg466KA8VA8AAAAAQH0rihYu5c4999x44oknonv37l97LM1MT0tF5eH5pptuGo8//niceuqp9VYrAAAAAAD5VVQBerL77rvHBx98EPfdd18cdthh0bFjxywoX3Fp27Zt7L///vG3v/0txo4dmx0HAAAAAEDxKJoWLhWlmebf+ta3siVJPdGnTZuWtXhp1apVdOjQITbeeOOs5zkAAAAAAMWpKAP0FW2wwQbZAgAAAAAA5UyxBgAAAACASgjQAQAAAACgEkXdwuWTTz6J119/PcaMGRMzZsyIOXPmRJs2baJ9+/axxRZbRN++faNbt275LhMAAAAAgDwougB90aJFcdNNN8Vf/vKXePfdd1e7/9Zbbx0nnnhi/PCHP4y11lqrXmoEAAAAACD/iqqFy4svvhjbbrttnH766Vl4XlZWli2VKX/snXfeiZ/85CfZcel4AAAAAACKQ9EE6A888EDsueee8cEHH3wtNE/bzZo1i7XXXju7rfh4SUlJtv3+++9nxz/00EN5qB4AAAAAgPpWFAH66NGj49vf/nYsXLgwd1/nzp3jvPPOixEjRsTMmTNjwYIFMX369Ow2bb/wwgtx/vnnxyabbJIL0tPxRx55ZNYzHQAAAACAwlYUAfqpp56ahd/ls8lTcJ5mlF922WWx2267Rbt27ZbbP233798/Lr300my/Cy64YLkQ/bTTTsvTZwIAAAAAQH0p+AD9k08+iWeffTYLv5Pf/e53WXDevHnzKh2fLhx6ySWXZMeVt3Z55plnsnEBAAAAAChcBR+gp1Ys5bbeeus466yz1micM888M7bZZptKxwUAAAAAoPAUfIA+adKk3Pq3vvWtGo112GGHVTouAAAAAACFp+AD9FatWuXWu3TpUqOx0oVHKxsXAAAAAIDCU/ABesXQe+bMmTUaa9asWbn1TTbZpEZjAQAAAADQsBV8gD5w4MDcBUOfeuqpGo319NNP5y4smsYFAAAAAKBwFXyA3r59+6z3eVlZWTz22GPx0ksvrdE46bj//Oc/UVJSEocffniss846tV4rAAAAAAANR8EH6MnVV1+dtXJZunRpHHroofHqq69W6/jXXnstC+GXLVuWjfOnP/2pzmoFAAAAAKBhKIoAfb311ovHH388evXqFVOnTo1vfOMbceKJJ8Ybb7yxyuPS4z/60Y+y/adMmZIdn2axr7vuuvVWOwAAAAAA+VEaReCEE07Ibnv37h1jxozJZqLfcsst2ZJavGy99dbRsWPHaNmyZcyfPz8Ly999992YMWNGdlxq/9K0adNsvyuuuGK1Hy+1eUljAwAAAADQeBVFgH7rrbdmoXa5tJ5C8WT69OkxYsSIrx1T/nj5/ql9y7333rvaj5WOE6ADAAAAADR+RRGgVxaKV+X+qj4OAAAAAEDhKYoAfeDAgcvNQAcAAAAAgNUpigD92WefzXcJAAAAAAA0Mk3yXQAAAAAAADREAnQAAAAAAKiEAB0AAAAAAIo1QF+8eHGtjvfCCy/U6ngAAAAAADQ8RRGg77rrrvHBBx/UeJyysrK4+OKLY8iQIbVSFwAAAAAADVdRBOj/+9//ok+fPnHrrbeu8RiffvppDBw4MC677LJYunRprdYHAAAAAEDDUxQBejJv3rwYOnRofOc734nZs2dX69j77rsvtttuu3jppZeyWegAAAAAABS+ogjQW7Rokd2m8Puee+6JHXbYIV555ZXVHjd//vz44Q9/GEcddVTMnDkzd/9ee+1Vp/UCAAAAAJB/RRGgv/HGG9G7d+/c9vjx47N2LL/+9a9XeszIkSOzti9//etfc7POS0tL4/LLL49HH320XuoGAAAAACB/iiJA79WrV7z++utx8sknZ2F4SUlJLFmyJC644ILsgqCTJk1abv8//elP2YVH33///dx9PXv2jBdffDHOOeecPHwGAAAAAADUt6II0JPmzZvHtddeG/fff3+su+66ufufffbZ2HbbbePBBx+MqVOnxv777x9nnnlmLFy4MHs8Be7f//73swuR7rTTTnn8DAAAAAAAqE9FE6CXO/jgg+Ott96KQYMG5WajT58+PQ499NDYfPPNs/Ys5S1b2rZtG3fccUfcdttt0bp163yXDgAAAABAPSq6AD3p1KlTPP3003HJJZdEkyZNshA9heazZs3Kheq77LJLNuv8u9/9br7LBQAAAAAgD4oyQE9SSH700UfHZpttlgvN05Kk2ea33HJLdO/ePd9lAgAAAACQJ0UboN99993Rp0+fGDt2bG4GenmQPmfOnGwG+q233prvMgEAAAAAyJOiC9DnzZsXJ5xwQnzve9/LtWxJywEHHBDf+ta3ciH63LlzY+jQofGd73wnZs+ene+yAQAAAACoZ0UVoKeLh6ZZ5+mioOUXCm3evHlcddVV8eCDD8Z9990X1113XbRo0SI3K/2ee+6JHXbYIV555ZV8lw8AAAAAQD0qmgA9heT9+vWLDz74IHfflltumQXjP/nJT3L3nXTSSfHaa69F7969c/eNHz8+Bg4cGL/61a9ywTsAAAAAAIWtKAL0/fffP84666xYuHBhtp1C8NTG5Y033ojtttvua/un8Pz111+Pk08+OdfSZcmSJXHhhRfGkCFD4rPPPsvDZwEAAAAAQH0qigD9P//5T269Xbt2MXz48Lj55pujVatWKz0mtXa59tpr4/7774911103d/9zzz0X22+/fZ3XDAAAAABAfhVFgJ6kmeSphUvqg37EEUdU+biDDz44O2bQoEG59i3Tp0+vw0oBAAAAAGgIiiJAb9KkSZx33nnx/PPPR9euXat9fKdOneLpp5+OSy+9NEpLS+ukRgAAAAAAGpaiCNCffPLJuOyyy6Jp06ZrPEbqg37++ednLVzWJIQHAAAAAKBxKYoAffDgwbU2VnkbGAAAAAAACltRBOi1LV2IFAAAAACAwlb0Db3nz58fkydPjhkzZsS8efOiRYsW0bdv33yXBQAAAABAnhVlgD5u3Li48cYb44knnohRo0bF0qVLc4/17Nkzxo4du9z+CxcujKuvvjrKysqyPupnnnlm1hMdAAAAAIDCVVQB+pw5c+KMM86IYcOGZWF4Un5bbsXtpHnz5vHoo4/Gs88+m21vs802sffee9dT1QAAAAAA5EPR9EBPbVp23HHH+Otf/xrLli3LgvKKYfnqZpSfdNJJuf3vvvvuOq8XAAAAAID8KooZ6KkFy1577RUffPBBLijv3bt3HHPMMbHzzjtHx44ds+1Vhej77bdf1h89jZVavwAAAAAAUNiKIkC/4oor4r333ssC8iZNmsRVV10Vp556arXGaN26deyyyy7x3HPPxaRJk+KTTz6Jrl271lnNAAAAAADkV8G3cEntWtIFQMvdcMMN1Q7Py22//fa59RTIN0QjR46MZs2aZS8WlC+DBw/Od1kAAAAAAI1OwQfoL7/8ckybNi0LklMP9KFDh67xWN26dcutpxnoDc3SpUvjBz/4QSxZsiTfpQAAAAAANHoFH6CPHTs2t37QQQfVaKy11147tz579uxoaK688sp444038l0GAAAAAEBBKPgAferUqbn1zp0712ishjyz+6OPPoqLLrooW19//fVjvfXWy3dJAAAAAACNWsEH6Onin+XmzJlTo7G++OKL3HpDC6hPPPHEmDdvXrb+xz/+Mdq0aZPvkgAAAAAAGrWCD9A32GCD3Prbb79do7FeffXVWpvNXpv++te/xlNPPZWt77nnnnH00UfnuyQAAAAAgEav4AP0vn375tYffPDBmD9//hq3gnniiSey9dLS0thtt92iIUiz4s8+++xsvUWLFnH99dfnuyQAAAAAgIJQ8AF6t27dYsstt4yysrIsBD///PPXaJyf//znsXDhwigpKYkBAwY0mBYpp512WsyYMSNbv+CCC6Jnz575LgkAAAAAoCAUfICenHPOObn1q666Ki688MJqHX/JJZfEsGHDctvnnntuNAQPPPBA3Hfffdl67969l/s8AQAAAAComaII0I877rislUuahZ6WX/3qV7H11lvHTTfdFJ999lmlxyxYsCALqPv37x+XXnppdl+afX7AAQfEXnvtFfk2a9asOOWUU3J13XjjjdGsWbN8lwUAAAAAUDBKowikgPmhhx6Kfv36xfjx47P73nvvvTj55JOz9bZt2+b2TYH6Vlttle23ePHi5cZJ9995553REPzsZz+LSZMm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/fv3j1atWq10hnkaO81GTyZNmrTGHwcAAAAAgIah4AP0CRMm5NbXX3/9Go213nrrZW1cPv3006891rZt21h33XWzx9PFRAEAAAAAaNwKPkCfOXNmbn3KlCk1GuvLL7/MbmfNmlXp461bt67R+AAAAAAANBwFH6BvuOGGufXHHntsjcd54YUXsv7nqd95x44dK92nPFhPs9EBAAAAAGjcCj5A33777bPb1Fol9UNfkxA9Hft///d/ue0ddtih0tnpabZ7Ctg7d+5cw6oBAAAAAMi3gg/Qt9tuu9hiiy2yYDsF4UceeWQ8+uijVT5+zpw5cdRRR8WLL76Yu+873/lOpTPUy2211Va1UDkAAAAAAPlU8AF6cuWVV2bheQrRv/rqq9h///3j4IMPjgceeGCl/cxHjx4dv/71r2PzzTePf/zjH9mxadlll12yEH5Fd999d259t912q9PPBwAAAACAulcaRWDfffeN888/P375y1/mZqI//PDD2VLeJ719+/bRvHnzLGCfNGlS1u88KQ/e022XLl3izjvv/Nr4H3/8cfzzn//MbR9wwAH1+NkBAAAAAFAXiiJATy699NJYb7314he/+MVy4XgyefLkbCkPysul7fL9dt555xg+fHh07dr1a2O3atUqRowYka03a9as0n0AAAAAAGhciqKFS7nTTz893nnnnfj+978fLVq0+NrjFcPz8u3evXvHDTfcEC+//PJKg/GOHTtmrV3S0qdPnzqrHwAAAACA+lM0M9DLbbrppnHbbbfFNddcE88991y8/vrrMX78+Jg5c2YsXLgw2rVrF+uvv3528dF+/fpltwAAAAAAFJ+iC9DLpaD8wAMPzBYAAAAAACjqFi4AAAAAAFBVAnQAAAAAAKiEAB0AAAAAACohQAcAAAAAgEoU3UVEx4wZE3fddVe8+uqrMXr06Jg5c2bMnTu3WmOUlJTEkiVL6qxGAAAAAADyr2gC9GnTpsVpp50W99xzT+6+srKyvNYEAAAAAEDDVVos4fngwYPjvffey0LzNINceA4AAAAAQBR7gH7OOefEqFGjsuA8SbeDBg2KXXfdNTp16hRt2rTJd4kAAAAAADQwpcUw+/z222/Phec77LBD1gN9iy22yHdpAAAAAAA0YAUfoD/zzDOxbNmybH399dePJ598Mtq3b5/vsgAAAAAAaOCaRIGbOHFidptm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t956a+64FLj/6U9/ij/84Q+xZMmS+OCDD+L++++PLl265O1zAQAAAACgfjSJApeC75tvvjk38zwF55dffnkuPF+VDTbYIH7961/HiBEjol27dvHWW2/Ffvvtl11wFAAAAACAwtakGHqfz5kzJ1tP7VrOP//8ao+x8847x2233ZbNXh89enRccMEFdVApAAAAAAANScEH6O+9915u/cADD4zS0pV3rVm8ePFKH0s91HfaaacsRB82bFgsXbq01msFAAAAAKDhKPgAffr06bn1rbfeutJ90gVCk4ULF65yrP333z+7nTFjRjz//PO1WicAAAAAAA1LwQfoixYtyq23bdu20n3S/WlmecWwvTKbbLJJbv2TTz6pxSoBAAAAAGhoCj5ATxf/LDd79uxK92nfvn2uhcvkyZNXeUHSclOmTKnVOgEAAAAAaFgKPkDv2rVrbn3ixImV7rPVVlvl1l9++eWVjjVy5Mjc+lprrVVrNQIAAAAA0PAUfIDeu3fv3Pobb7xR6T7p4qDl0gVCKzNt2rS4++67c9vdunWr1ToBAAAAAGhYCj5A7969e2y88cZZj/OXXnopvvrqq6/tc+SRR+bWH3nkkbjwwguzdi7lJkyYEAcddFB28dCkWbNmMXDgwHr6DAAAAAAAyIeCD9CTvffeO7tduHBh3HvvvZXOUt9///2zkD351a9+FR07dox+/frFDjvsED169IhXXnkle6ykpCS+//3vx7rrrlvPnwUAAAAAAPWpKAL08hnmKSC//PLLc0F5Rddee21stNFGucdmzZoVr732Wrz99tuxdOnS3H4pTP/9739fj9UDAAAAAJAPRTMDffz48dny+OOPx7Jly762T5cuXeK5556L/v3750L0dFtxfZ999okXXngh1l577Xr/HAAAAAAAqF+lUQSaNGkSXbt2Xe1+PXv2zALyNPP8qaeeis8++ywLzlO4nsLz7bffvl7qBQAAAAAg/4oiQK+unXfeOVsAAAAAACheRdHCBQAAAAAAqkuADgAAAAAAlRCgAwAAAABAJQToAAAAAABQiaK7iOioUaPi7rvvjldffTXGjBkTM2fOjLlz51ZrjJKSkliyZEmd1QgAAAAAQP4VTYD++eefx6mnnhr/+te/cveVlZXltSYAAAAAABquogjQP/vssxg0aFCMHz8+C83TDHLhOQAAAAAAUewB+o9+9KP46KOPsuA8WWuttWKPPfaIPn36xIYbbhitW7fOd4kAAAAAADQwBR+gp+D8kUceyYXn++yzT/z1r3+NjTbaKN+lAQAAAADQgBV8gP7cc8/l1nv06BEPPPBANgMdAAAAAABWpUkUuC+++CK3fvTRRwvPAQAAAACokoIP0Js3b55b79KlS15rAQAAAACg8Sj4AH2zzTbLrc+cOTOvtQAAAAAA0HgUfIA+aNCgaNGiRbb+0ksv5bscAAAAAAAaiYIP0Nu2bRtDhw6NsrKyePDBB+PDDz/Md0kAAAAAADQCBR+gJ7/+9a+zVi6LFi2Kgw8+OD7//PN8lwQAAAAAQANXFAF6moX+5JNPRu/evWP06NGx9dZbx1VXXRVffvllvksDAAAAAKCBKo0isckmm8Rrr70Wp59+etx8881x1llnZUu3bt1igw02yPVJr4qSkpJ46qmn6rReAAAAAADyq2gC9CVLlsRvfvObGD58eBaAp57oyfjx4+Pjjz+u8jjpuHQ8AAAAAACFrSgC9AULFsQ3v/nNeP7553P3VQzRy28BAAAAAKCoAvSzzz47nnvuueWC87XXXju23XbbrH1L69at810iAAAAAAANTMEH6FOmTIm//OUvubYrXbp0iSuvvDIOPPDAaNq0ab7LAwAAAACggSr4AP3pp5+OxYsXZ+vrrLNOvPDCC9GpU6d8lwUAAAAAQAPXJArcJ598kt2mGejHHHOM8BwAAAAAgCop+AC9ZcuWufVtttkmr7UAAAAAANB4FHyAXnHG+aJFi/JaCwAAAAAAjUfBB+jf+MY3orT0/7V6f+edd/JdDgAAAAAAjUTBB+gbbLBB7L///lFWVhb33XdfzJo1K98lAQAAAADQCBR8gJ5cc801sd5668W0adPi+OOPj2XLluW7JAAAAAAAGriiCNA7d+4cDz/8cGy44YbxwAMPxMCBA+PNN9/Md1kAAAAAADRg/685eIG79NJLs9uDDjoobrrppnj55Zejb9++seWWW8Yuu+ySBestWrSo1pgXXnhhHVULAAAAAEBDUBQB+sUXXxwlJSXL3Zd6oo8ePTrGjBmzRmMK0AEAAAAACltRBOgVQ/PyIL38Nt1XXSuG8QAAAAAAFJ6iCNC7dOki9AYAAAAAoFqKIkD/+OOPo5CNGjUq3n777Zg0aVI0bdo0OnXqFDvttFN0794936UBAAAAADRaRRGgF6r77rsvLrvssiw8r0z//v3jV7/6VQwePLjeawMAAAAAaOya5LsAqm/p0qVx/PHHxxFHHLHS8Dx56aWXYo899ogLLrigXusDAAAAACgEZqA3QmeccUbceuutue1WrVrF9773vdh+++1j0aJF8eqrr8Y//vGPWLx4cSxbtix++ctfxrrrrpsdBwAAAABA1QjQG5l///vfcc011+S2e/XqFY8++mhssskmy+03cuTI2G+//bK+6MnZZ58de+65Z2yzzTb1XjMAAAAAQGOkhUsjkmaT/+IXv1hu5vlDDz30tfA82W677eLee++NJk2aVHosAAAAAACrJkBvRJ566qnlep7/5Cc/iU033XSl+6eLiKY+6eUefvjh+PDDD+u8TgAAAACAQiBAb0Tuv//+5bZ/8IMfrPaYH/7wh8tt/+tf/6r1ugAAAAAACpEAvZH1Py/Xo0ePbFmdAQMGRIsWLZabhQ4AAAAAwOoJ0BuJmTNnxoQJE3Lbu+66a5WOW2uttWLHHXfMbVdsAQMAAAAAwMoJ0BuJ0aNHL7fds2fPKh9bcab6jBkz4vPPP6/V2gAAAAAACpEAvZH46KOPltvu0qVLlY9dcd8VxwIAAAAA4OtKK7mPBmj27NnLba+77rpVPrZ9+/bLbX/11Vc1rmfKlCkxderUah0zfvz45bY//fTTKHSzplfvawQ0fOPGjavSfpOnTo+FCxdH8+bNYvH8KjzvLphV8+KARvl8ATXlnBOK9++Ic06gWM85O3fuHM2bN6+XjyVAbyTmzJmz3HbFC4OuTsuWLVc51pq47rrr4pJLLqnWMWuvvfZyrWfOPvvsGtcBUN8eueeWOhnXH2QoPEcd9Ui+SwCgEauL807nnFB4ivWcc/jw4cu1ra5LWrg0EgsWLPjaxUGrasVXY+bPn19rdQEAAAAAFCoBeiOx4ozzRYsWVfnYhQsXrnJGOgAAAAAAX+fdO41EmzZtVjkjfVVWnHG+4lhr4pRTTokjjjiiWsfMnTs3xowZk7VyScsGG2xQrZn0AI3Fhx9+GIccckhu+1//+tdyLawAAKCmnHMCxaxz58719rEE6CtYtmxZ3HjjjXHHHXfEe++9F4sXL45u3brFoYceGuecc060a9cuL3Wt+HFnzJhR5WNnzpy53Hbbtm1rXE/Hjh2zpbp23nnnGn9sgIYuvchZ8YXO9Ie9vnqzAQBQHJxzAtSPomjh8pvf/Ca6dOmSLaeddtpK90th+Te/+c1sn1deeSVmzZoV8+bNy4L0X//617H11lvH+++/H/nQvXv35bYnTJhQ5WM/+eST5bY33XTTWqsLAAAAAKBQFUWAnmaTT5w4MT777LM46qijVrrfBRdcEE888USUlZVV+ngaY999981C9frWq1evr71Vq6rGjRuXW2/fvn1suOGGtVobAAAAAEAhKvgAfdq0aTF69OgoKSnJem4PGDCg0v2++OKLuPrqq7P9ypeDDz44fvazn8U+++yTC9XTbO4rrriinj+LiHXWWSebQV/u5ZdfrtJx6WKj//3vf3Pb22yzTZ3UBwAAAABQaAo+QB85cmRuffDgwSvd784778x6h5UH5f/4xz/i/vvvj9/+9rfxn//8J/7whz9k96fHb7755pXOUq9L++2333Kzyj/66KPVHjNixIjleqIdcMABdVYfAAAAAEAhKfgAvWL/79TDfGUeeOCB7DbNPN97772z2ecVnXHGGbHVVltl65MnT45333036lu6kGlFf/nLX1Z7zIr7VLxCNwAAAAAARRygT58+Pbe+/vrrV7rP/Pnzs4uGpvA8+d73vlfpfvvvv39u/e233476tueeey73IsA111wT48ePX+n+qc3Lvffeu1z9m222WZ3XCQAAAABQCAo+QK/YvqRFixaV7vPqq6/G4sWLc21Z0oVCK9OzZ8/c+tSpU6O+NWnSJH7961/ntufOnRsHHnhgfPrpp1/bNwX8RxxxRCxbtix37K9+9at6rRcAAAAAoDErjQLXsmXL3PqsWbMq3ef555/PbtMM9NSmpUOHDpXuVzGAT+F1PqTA/JRTTonrrrsu2x41alRWc5o1v/3222cvBKTZ9Pfdd1+2Xu7yyy+P7bbbLi81AwAAAAA0RgUfoFds2zJ69OhK93n00Udz69/4xjdWOtbMmTMrDebr29VXXx1fffVV/O1vf8uF+TfddFOl+6YXBX7+85/H2WefXc9VAgAAAAA0bgXfwmXbbbfNrT/00EOxZMmS5R5///33sxYu5f3Pd99995WONWHChNX2U68PTZs2jdtvvz2GDx++yguj7rrrrvHkk08u1/YFAAAAAICqKS2GAL1Tp04xadKk+Oyzz+InP/lJdvHNFELPnj07TjzxxFzv8zSrfGX9z5PXX389t77ppptG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ZJFFwoQJE8Kxxx4b/v73v9e9vpQTOPnkk8OnPvWpsNBCC8VgD5PeUau30uR4eciw/sUvfhG+9KUvxUDRPPPME0aOHBmWXXbZ+Jlvu+22Qst59NFH43t//OMfD/PPP3/cnqzX2LFjw0YbbRR+8IMfhAceeCAMRLoP8jLd+L/s91lG6TvvvBPOPPPMuK1HjRoV5pxzzrD00kuHPfbYI/z5z3+u+n7s52x53/ve92qu3/PPPx+++93vxn2S7Wfec+21146f/x//+Edd+/fHP/5x+NznPheWWmqpuH9Zd77ffPPN476nRnP5uk6cOLH0fz/72c9K659+Vcviv+eee8JXvvKV8LGPfSwssMACYY455giLLbZY2GKLLWIw8d133y20/v/973/DqaeeGj796U+HD37wg/G44jz56le/GmbOnFl4O0id5H1h8N8XuNaX3xduueWWsM0228Tr5VxzzRVGjx4ddtppp/CnP/3pfX//u9/9Lmy//fbxc3KNZR+wzx966KGa780ohcsuuyzstddeYfz48fFax2fks3IN5TjgeKikWdft6dOnh/322y+suuqqcftm68A6cT1nexT1+9//Pm4r7pNsjwUXXDB89rOfDZdffnmhyXlZV/7Nw2cov6dyHhxxxBFhlVVWiZP3cqytvPLK4Tvf+U7heyZlls4+++y4Hfn87HOO1d122y3cf//9Dd3PJambWcJFkiS1FJ3tDJ26aghwHHbYYTUDigz/p3P9xhtv9Pv/l156KX7dcccdcZK6c845JwZGi3j22Wfja8s7+I8//nj40Y9+FM4666zYCd9qq62qLueJJ56IgYK8Dj7BZb5Yzg477BCXSWe6nm3xt7/9LX7NmDEj3HjjjeHggw+OgdURI9rTrCPAzDa48847+/0/QRaC6hdccEG48sorw4Ybbjjg9zrmmGPC97///fDvf//7fevAF+vAfuZ4WG+99aou65prrgl77rlnePHFF3P3PV+8hn1d6yFAUf/85z/jQ4Wf//zn7/vdCy+8EL+oCU0t6F/+8pdhySWXrLisv/zlL2HjjTcODz/8cL//J3DOF8cSwQ6pG3hf6K77wkEHHRQnfE1R056vSy+9NF47P/OZz8SHBAcccED44Q9/2O+1bP9LLrkkXHHFFTFoXGn788B0hRVWCLNmzXrf79ivfPEA4Sc/+UnYd999w0knndT0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"/></p>
+<h3 id="43-determinism-why-a-difference-of-one-is-not-noise">4.3 Determinism: why a difference of one is not noise</h3>
+<p>Before treating 7 and 8 as different, we establish that the checker does not vary. We score the
+same baseline five times under identical conditions and record every gate verdict; the fourteen
+verdicts are identical across all five runs, the count of satisfied gates is 14 in each, and the
+standard deviation of that count is 0. The measurement is trivial to state and it changes what the
+previous table means: the 7-of-8 figure is not a sample from a noisy process but the exact number
+of probes on which a deterministic rule returns a verdict its author did not intend, so the honest
+reading is that the gate has one known defect rather than that it is right about seventy percent of
+the time.</p>
+<p>We report the dispersion explicitly rather than omitting it, because the venue rule we borrowed
+demands exactly that of others: a number that comes from a repeated process should state its
+dispersion and its sample size, and the value zero is a legitimate value. The same discipline is
+why every caption in this paper that reports a count states its n, and why the two gates we added
+would fire on this paper if it did not.</p>
+<h3 id="44-what-the-numbers-do-not-show">4.4 What the numbers do not show</h3>
+<p>Four things deserve to be stated rather than left to the reader, and the first two bound the
+interpretation of the whole evaluation.</p>
+<p>The first is that a clean report under both gates is compatible with a draft that reports no
+statistics at all. The baseline probe is precisely such a draft: it passes both gates because it
+contains no error symbol to define and no caption to annotate, and a reader who saw only that row
+would conclude that the gates were satisfied rather than that they were not engaged. The gates are
+therefore prospective, and the correct statement of their coverage is that they constrain the
+subset of drafts that choose to report uncertainty, not that they improve every draft.</p>
+<p>The second is that none of these numbers is evidence that the gates improve writing quality.
+Establishing that would require a blind evaluation in which readers score drafts with and without
+the rules, and this project does not have one; the skill's own verification status records the gap
+as partial, and we keep that status rather than upgrade it on the strength of a probe matrix. What
+the matrix establishes is the behaviour of a predicate, which is a necessary condition for the
+predicate to be useful and not a sufficient one.</p>
+<p>The third is that the corpus count of zero has a narrower scope than it appears to have. The
+45,524 bytes we counted are our extraction of the corpus, not the corpus itself: they are the
+clauses we chose to quote from twenty reports, so a zero count establishes that our evidence file
+contains no statistical markers, and it establishes that the gates we induced from that file do not
+cover statistics. It does not establish that the twenty reports contain no error bars, because a
+report could report dispersion in a clause we did not quote. The stronger claim would require
+scanning the reports in full, which we did not do, and we flag the difference instead of relying on
+the rhetorical force of a zero.</p>
+<p>The fourth is that the twelve-case regression suite is unchanged by this work. Its pass rate of
+1.00 over eleven decidable cases is a real measurement, but it is the measurement of the previous
+version and it earns the borrowing nothing, because no case exercises an error bar and the judged
+case remains pending. Whether the borrowing degrades the suite is answered by the fact that no case
+changed; whether it is covered by the suite is answered in the negative, and both statements belong
+in the same paragraph.</p>
+<h2 id="5-discussion">5 Discussion</h2>
+<h3 id="51-unsuccessful-attempts">5.1 Unsuccessful Attempts</h3>
+<p>Our first attempt was to make the statistics gate bind rather than count, by requiring that every
+error symbol in the draft be followed within its own sentence by a declaration. We dropped it after
+reading our own counterexample: a report that defines its error bars once in a methods section and
+then uses the same symbol in six figures is doing the right thing, and a sentence-local rule would
+fail it six times. We then tried the obvious repair, namely requiring that each figure caption with
+an error symbol carry its own declaration, and found that this is already what the second gate does
+while the first gate's job is to catch the prose case where no caption is involved. The mechanism
+behind the failure is that the right unit of binding is the reader's need rather than the text's
+structure, and a reader is served by a definition anywhere in the draft as long as the definition is
+findable, which is a property no sentence-local scan can check. The shipped gate therefore counts,
+and Section 5.2 records what counting costs.</p>
+<p>Our second attempt was to extend the sample-size gate to table captions as well as figure captions,
+on the reasoning that a table of measured values deserves the same treatment as a figure. The probe
+that killed the plan is P6, and it is instructive precisely because it fails: a table caption
+carrying an error symbol passes, because the gate reads figure captions only. We had written the
+restriction deliberately, in the belief that table captions in this family of documents are
+uniformly longer and therefore less likely to omit a definition, and the probe shows that this
+belief is a prediction we never tested. We report it as a defect with a known repair, namely to
+scan both caption kinds, rather than silently widening the gate in this revision, because widening
+it would invalidate the twelve-gate baseline the first case measured and would need its own probe
+matrix to defend.</p>
+<p>A third attempt did not reach the code at all and is worth one sentence. We considered borrowing the
+guide's requirement that figure legends be shorter than 300 words, since length is countable, and
+rejected it because the counterexample is a caption just under the limit filled entirely with filler
+and carrying no information: the requirement is a proxy for a judgement, and implementing the proxy
+would let a draft satisfy the judgement for free.</p>
+<h3 id="52-dialogue-counting-is-not-binding-and-only-figure-captions-are-read">5.2 Dialogue: counting is not binding, and only figure captions are read</h3>
+<p>Two weaknesses in the shipped implementation are structural rather than accidental, and we measure
+both rather than describe them. The first is that the statistics gate is satisfied by a declaration
+anywhere in the draft, so one definition excuses an unlimited number of undefined symbols. Probe P5
+is built to demonstrate exactly this: it carries two error bars, declares only the first, and passes
+both gates because the declaration exists. The mechanism is the same one the first case identified
+in the comparison gate, namely that a count comparison cannot distinguish one justified assertion
+from one justified assertion plus nine unjustified ones, and the repair is equally structural: the
+gate would have to bind each symbol to a named entry in the evidence ledger instead of counting
+declarations.</p>
+<p>The second weakness is narrower and easier to fix. The sample-size gate reads figure captions only,
+so a table caption that reports a dispersion without a sample size escapes it, which is what P6
+demonstrates. The reason for the restriction is that the caption parser was written for figures and
+the table path was never widened; the cost of widening it is a change to the baseline that the
+first case's twelve-gate measurements depend on, and we chose to record the defect rather than
+invalidate a published measurement.</p>
+<p>Both weaknesses share a cause worth naming, because it generalizes beyond this borrowing. A rule
+borrowed in prose arrives with a scope, and the scope in prose is usually stated at the level of
+the reader's need rather than the checker's ability: the guide says the legend must define the
+statistics, not that the checker must bind each symbol. Implementing the prose as a scan therefore
+implements a weaker property than the prose states, and the gap between them is invisible unless
+someone probes for it. That is the argument for the probe matrix, and it is also why we report the
+false positive on the abbreviation rather than quietly adding an exception: an exception would make
+7 of 8 into 8 of 8 while hiding that the gate matches tokens without knowing their meaning.</p>
+<h2 id="6-conclusion-limitations-and-future-directions">6 Conclusion, Limitations, and Future Directions</h2>
+<p>In this paper, we introduce a borrowing procedure that adds four rules from a venue author guide to
+a style checker induced from a twenty-report corpus, and we report what the borrowing measures. A
+corpus-induced checker cannot cover a feature its corpus never exhibits, which we measured as a
+zero count for every statistical marker in a 45,524-byte extraction file; as committed, the
+borrowing costs 6,848 git blob bytes, or 3.544 percent of the deployment, and 105 added against 8
+removed lines; the two
+resulting gates return the expected verdict on 7 of 8 and 8 of 8 probes respectively, and both
+repair probes recover when the missing declaration is supplied; the checker is
+deterministic, scoring 14 of 14 on five repetitions with a standard deviation of 0.</p>
+<p>While acknowledging its usefulness, we also recognize that the borrowing has some limitations,
+especially on the boundary between counting and binding. Firstly, both gates are counts rather than
+bindings, so one declaration excuses an unlimited number of undefined symbols and a table caption
+escapes the sample-size rule entirely; we measured both defects with dedicated probes rather than
+leaving them to be discovered, and the repair for each requires a change to the scoring baseline
+that this revision deliberately did not make. Secondly, the evidence that the borrowed rules
+improve a draft, as opposed to constraining it, is absent: no blind evaluation exists, the
+regression suite predates the change, and the honest status of the skill remains partial
+verification. Fortunately, these limitations are expected to be naturally addressed as long as the
+ecosystem moves from prose summaries of measurements to machine-readable records, since a ledger
+entry with a named field is what turns a count into a binding.</p>
+<p>The pipeline adheres to the route of open protocols rather than of a monolithic tool, aiming to
+keep the borrowed rule auditable back to the clause it came from. In the future, we plan to
+strategically invest in research across the following directions.</p>
+<ul>
+<li>We will bind each error symbol to a named ledger entry, so that a declaration is checked against
+  the symbol it defines rather than counted against the draft as a whole.</li>
+<li>We will widen the sample-size gate to table captions and re-measure the twelve-gate baseline in
+  the same revision, so that widening the check does not silently invalidate a published number.</li>
+<li>We will add probes for every rule that the admission test rejects for judgement, so that a future
+  reader can see what the rejection costs rather than only what it saves.</li>
+<li>We will submit a draft written under these gates to a blind reader, so that the skill's
+  verification status can move from partial to tested by something other than its own author.</li>
+</ul>
+<h2 id="references">References</h2>
+<ol>
+<li>DeepSeek-AI. DeepSeek-V3 Technical Report. arXiv:2412.19437, 2024.</li>
+<li>DeepSeek-AI. DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement
+   Learning. arXiv:2501.12948, 2025.</li>
+<li>DeepSeek-AI. DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language
+   Models. arXiv:2402.03300, 2024.</li>
+<li>Nature. Formatting guide for authors. nature.com/nature/for-authors/formatting-guide, accessed
+   2026-11.</li>
+<li>Nature. Final submission: figure specifications. nature.com/nature/for-authors/final-submission,
+   accessed 2026-11.</li>
+<li>B. Wong. Points of view: Colour blindness. Nature Methods 8, 441, 2011.</li>
+<li>Nature. Reporting summary, statistics section.
+   nature.com/documents/nr-reporting-summary-flat.pdf, accessed 2026-11.</li>
+</ol>
+<h2 id="appendix-a-contributions-and-acknowledgments">Appendix A Contributions and Acknowledgments</h2>
+<p>The borrowing procedure, the admission test, both gates, the probe matrix, and the measurement
+scripts were designed and implemented as a single-author project. The 42-requirement extract was
+assembled from the venue's public author pages and is released with the project so that the
+admission test can be re-run rather than believed. We thank the maintainers of the agent runtime
+whose skill-loading mechanism makes one protocol plus five tools a natural unit of release, and the
+authors of the first case in this project, whose compliant draft serves as the baseline for every
+probe reported here.</p>
+<h2 id="appendix-b-probe-definitions">Appendix B Probe Definitions</h2>
+<p>Each probe is defined as a single anchored edit against <code>docs/case-selfhost/04-论文.md</code>, and the
+script asserts that the edit changed the text before scoring, because a silently ineffectual edit
+would make a measurement look stable for the wrong reason. Probe P1 appends a dispersion to a
+reported gate count in the abstract. Probe P2 adds one sentence declaring that dispersion with a
+sample size. P3 replaces the figure caption with one that is a single sentence carrying a dispersion and no
+sample size, which additionally trips the structural group's caption floor. Probe P4 adds the sample
+size to that caption. Probe P5 adds a second dispersion that is never
+declared. Probe P6 adds a dispersion to a table caption. Probe P7 adds a sentence about a
+continuous-integration pipeline, which contains no statistics at all.</p>
+<h2 id="appendix-c-the-38-rejected-requirements">Appendix C The 38 Rejected Requirements</h2>
+<p>The rejected requirements fall into three classes, and the class matters more than the individual
+rule. Layout, which is the largest class, contains the measurements of column width, text size, line
+weight, panel labelling, and figure depth, all of which belong to the renderer that emits the final
+document and none of which a Markdown source can enforce. Judgement contains the rules that require
+understanding a sentence rather than matching it, including the legend word limit, the prohibition
+on repeating method detail in a legend, the requirement to state whether samples are distinct, and
+the requirement to give effect sizes and exact p values, since a p value is a number but its
+presence does not establish that the reported test was appropriate. Conflict contains the single
+panel-labelling rule whose form contradicts the corpus convention, which we keep in the corpus form
+and record here so that the refusal is visible.</p>
+</div></body></html>

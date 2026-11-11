@@ -26,7 +26,7 @@
 | 3 | 挖研究点 | 5 条挖掘线各轮一遍，每条写成 `<机制名>: <收益>` | 挖出 3 个以上「主研究点」（还在堆料） |
 | 4 | 搭骨架 + 写 | 按 `references/02` 逐章填必写件 | 某章无证据 → 回工序 2 |
 | 5 | 出图表 | `paper_table` / `paper_figure` 生成 | 图/表未被正文引用 |
-| 6 | 机检 + 移交 | `paper_lint` G1–G12 全绿 + 评分 ≥14/20 | 有 FAIL 门禁 |
+| 6 | 机检 + 移交 | `paper_lint` G1–G14 全绿 + 评分 ≥14/20 | 有 FAIL 门禁 |
 
 工序 3 的五条挖掘线（异常 / 取舍 / 复用 / 失败 / 成本）是本技能的判断核心：**一条线最多出一个主研究点**，写不成 `<机制名>: <收益>` 双段式小节名的，还不是研究点。
 
@@ -58,7 +58,7 @@
 evidence_scan   扫项目 → 账本骨架（全部 todo，等人判定）
 paper_table     表数据 JSON → booktabs LaTeX + Markdown（best 加粗 / second 下划线 / 同档容差）
 paper_figure    图数据 JSON → PNG/SVG/PDF（三线网格 + 单一强调色）
-paper_lint      明文 → G1–G12 门禁报告 + 排版指纹
+paper_lint      明文 → G1–G14 门禁报告 + 排版指纹
 paper_render    Markdown → 单文件 HTML（图片内联、目录锚点）+ DOCX（A4/页码/三线表）
 ```
 
@@ -103,12 +103,13 @@ references/02-章节骨架.md     每章必写件 + M 类改装 + 结论三段�
 references/03-措辞指纹.md     动词表 / 句式 / 禁用清单
 references/04-证据与主张.md   账本字段 / 挖掘线 / 主张强度分级
 references/05-图表规范.md     三线表 / caption 三件套 / 视觉惯例
-references/06-质检与反例.md   G1–G12 门禁 + S1–S10 评分 + 反例
+references/06-质检与反例.md   G1–G14 门禁 + S1–S10 评分 + 反例
 templates/                   素材卡 / 账本 / 摘要填空 / 贡献与结论填空 / 图表数据
 tools/                       五个工具
 evals/                       案例集 + rubric + 评测结果
 registry/                    技能契约 / 行业还原图 / DeepSeek 语料取证 / 范例 / 失败修复台账
-docs/case-selfhost/          自举案例：用本技能写本技能（英文版 + 中文阅读版 + 复现脚本）
+docs/case-selfhost/          案例 1：用本技能写本技能（英文版 + 中文阅读版 + 复现脚本）
+docs/case-nature-borrowing/  案例 2：把期刊作者指南借进风格门禁（中英双语交付版 + 探针复现）
 ```
 
 ## 外部案例
@@ -122,9 +123,20 @@ docs/case-selfhost/          自举案例：用本技能写本技能（英文版
 
 这两篇同时是本技能的**跨项目验收**：两篇的 `paper_lint` 均为 10/12（G1/G2 属体裁豁免，因为项目没有外部基准分数可报），且每篇都产出了 md / html / docx 三态，表图数与源文件逐项一致。
 
+## 案例论文（本仓库内，可复现）
+
+| # | 案例 | 论文 | 它验证了什么 |
+|---|---|---|---|
+| 1 | `docs/case-selfhost/` | 《PaperPipe: An Evidence-Gated Pipeline for DeepSeek-Style Technical Reporting》（M 类，中英双版） | 流水线本身：六道工序、12 条门禁、故障注入、4 个真 bug |
+| 2 | `docs/case-nature-borrowing/` | 《Four Rules Borrowed from a Journal》（M 类，中英双语交付版） | 借外部规范的边界：语料归纳的天花板、42→4 的准入测试、两条新门禁的召回与代价 |
+
+案例 2 是本技能**从「语料归纳」走向「跨源借规则」**的那一步，它同时给出一份可复用的判断清单：
+先测天花板、准入测试分三类拒收理由、每条借来的规则配四类探针（正例/修复例/盲区例/假阳性例）、
+「不响」不等于「通过」、代价必须写进落地表。详见该目录的 `README.md`。
+
 ## 验收标准
 
-- `paper_lint` G1–G12 全绿，或余项在 `lint-report.json` 写明理由并经用户确认；
+- `paper_lint` G1–G14 全绿，或余项在 `lint-report.json` 写明理由并经用户确认；
 - `references/06-质检与反例.md` 评分项 ≥14/20（机检全绿 ≠ 可交，仍需人工打分）；
 - 正文每个数字能追到账本 `status: ok` 的条目，`outperforms` 类断言 100% 有 `compare` 证据；
 - 摘要 / 贡献组 / 结论三段式三处数字一致；
@@ -133,7 +145,7 @@ docs/case-selfhost/          自举案例：用本技能写本技能（英文版
 
 ## 版本
 
-`0.1.0` — 六道工序、G1–G12 门禁、5 个工具、4 种体裁、12 个评测案例（11 已判定 / 1 待 judge）、失败修复台账 12 条、技能契约与行业还原图各 1 份、自举案例 1 篇（含中文阅读版）。
+`0.1.0` — 六道工序、G1–G14 门禁、5 个工具、4 种体裁、12 个评测案例（11 已判定 / 1 待 judge）、失败修复台账 12 条、技能契约与行业还原图各 1 份、案例论文 2 篇（自举篇 + 借规范篇，各含交付三态）。
 
 ## 验证状态
 

@@ -1,0 +1,576 @@
+{
+  "probes": [
+    {
+      "probe": "P0-baseline",
+      "intent": "compliant draft, no statistics at all",
+      "g13_pass": true,
+      "g14_pass": true,
+      "g13_expected_pass": true,
+      "g14_expected_pass": true,
+      "g13_ok": true,
+      "g14_ok": true,
+      "failed": [],
+      "chars": 25955,
+      "gates_passed_with_ledger": 14,
+      "gates_total": 14,
+      "failed_with_ledger": []
+    },
+    {
+      "probe": "P1-errorbar-nodecl",
+      "intent": "error bar introduced, no definition anywhere",
+      "g13_pass": false,
+      "g14_pass": true,
+      "g13_expected_pass": false,
+      "g14_expected_pass": true,
+      "g13_ok": true,
+      "g14_ok": true,
+      "failed": [
+        "G13"
+      ],
+      "chars": 25961,
+      "gates_passed_with_ledger": 13,
+      "gates_total": 14,
+      "failed_with_ledger": [
+        "G13"
+      ]
+    },
+    {
+      "probe": "P2-errorbar-decl",
+      "intent": "same error bar, now defined with s.d. and n",
+      "g13_pass": true,
+      "g14_pass": true,
+      "g13_expected_pass": true,
+      "g14_expected_pass": true,
+      "g13_ok": true,
+      "g14_ok": true,
+      "failed": [],
+      "chars": 26028,
+      "gates_passed_with_ledger": 14,
+      "gates_total": 14,
+      "failed_with_ledger": []
+    },
+    {
+      "probe": "P3-caption-non",
+      "intent": "figure caption gains an error bar but no n",
+      "g13_pass": false,
+      "g14_pass": false,
+      "g13_expected_pass": false,
+      "g14_expected_pass": false,
+      "g13_ok": true,
+      "g14_ok": true,
+      "failed": [
+        "G13",
+        "G14"
+      ],
+      "chars": 25825,
+      "gates_passed_with_ledger": 12,
+      "gates_total": 14,
+      "failed_with_ledger": [
+        "G13",
+        "G14"
+      ]
+    },
+    {
+      "probe": "P4-caption-withn",
+      "intent": "same caption, n = 5 supplied inside the caption",
+      "g13_pass": true,
+      "g14_pass": true,
+      "g13_expected_pass": true,
+      "g14_expected_pass": true,
+      "g13_ok": true,
+      "g14_ok": true,
+      "failed": [],
+      "chars": 25843,
+      "gates_passed_with_ledger": 14,
+      "gates_total": 14,
+      "failed_with_ledger": []
+    },
+    {
+      "probe": "P5-two-bars-one-decl",
+      "intent": "two error bars, only the first is defined; is the second also excused?",
+      "g13_pass": true,
+      "g14_pass": true,
+      "g13_expected_pass": true,
+      "g14_expected_pass": true,
+      "g13_ok": true,
+      "g14_ok": true,
+      "failed": [],
+      "chars": 26053,
+      "gates_passed_with_ledger": 14,
+      "gates_total": 14,
+      "failed_with_ledger": []
+    },
+    {
+      "probe": "P6-tablecap-non",
+      "intent": "table caption gains an error bar and no n; G14 reads figure captions only",
+      "g13_pass": false,
+      "g14_pass": true,
+      "g13_expected_pass": false,
+      "g14_expected_pass": true,
+      "g13_ok": true,
+      "g14_ok": true,
+      "failed": [
+        "G13"
+      ],
+      "chars": 25987,
+      "gates_passed_with_ledger": 13,
+      "gates_total": 14,
+      "failed_with_ledger": [
+        "G13"
+      ]
+    },
+    {
+      "probe": "P7-CI-as-word",
+      "intent": "'CI' used as an ordinary abbreviation (continuous integration), no statistics present",
+      "g13_pass": false,
+      "g14_pass": true,
+      "g13_expected_pass": true,
+      "g14_expected_pass": true,
+      "g13_ok": false,
+      "g14_ok": true,
+      "failed": [
+        "G13"
+      ],
+      "chars": 26020,
+      "gates_passed_with_ledger": 13,
+      "gates_total": 14,
+      "failed_with_ledger": [
+        "G13"
+      ]
+    }
+  ],
+  "gate_summary": {
+    "total_probes": 8,
+    "g13_correct": 7,
+    "g14_correct": 8,
+    "both_correct": 7,
+    "false_negatives_g13": [],
+    "false_positives_g13": [
+      "P7-CI-as-word"
+    ],
+    "false_negatives_g14": [],
+    "false_positives_g14": []
+  },
+  "corpus": {
+    "corpus_file": "registry/ds-corpus-evidence.md",
+    "corpus_bytes": 45524,
+    "corpus_error_bar": 0,
+    "corpus_plus_minus": 0,
+    "corpus_n_equals": 0,
+    "corpus_seed": 0,
+    "corpus_sd_or_ci": 0,
+    "ref05_5_1_to_5_5_stat_terms": 0,
+    "ref05_5_6_stat_terms": 2,
+    "ref05_bytes": 9400
+  },
+  "nature_extract": {
+    "file": "D:\\ZH\\vibe code\\skills\\tool\\rsi-agent\\outputs\\nature-figure-spec-extract.md",
+    "available": true,
+    "requirements": 42,
+    "by_group": {
+      "A": 5,
+      "B": 6,
+      "C": 4,
+      "D": 5,
+      "E": 5,
+      "F": 5,
+      "G": 6,
+      "H": 6
+    },
+    "bytes": 16222
+  },
+  "render": {
+    "deepseek": {
+      "ok": true,
+      "size_px": [
+        1817,
+        900
+      ],
+      "dpi": [
+        299.9994,
+        299.9994
+      ]
+    },
+    "colorblind": {
+      "ok": true,
+      "size_px": [
+        1817,
+        900
+      ],
+      "dpi": [
+        299.9994,
+        299.9994
+      ]
+    },
+    "default": {
+      "ok": true,
+      "size_px": [
+        1817,
+        900
+      ],
+      "dpi": [
+        299.9994,
+        299.9994
+      ]
+    }
+  },
+  "palette": {
+    "wong_in_tool": [
+      "#000000",
+      "#E69F00",
+      "#56B4E9",
+      "#009E73",
+      "#F0E442",
+      "#0072B2",
+      "#D55E00",
+      "#CC79A7"
+    ],
+    "wong_in_nature_guide": [
+      "#000000",
+      "#e69f00",
+      "#56b4e9",
+      "#009e73",
+      "#f0e442",
+      "#0072b2",
+      "#d55e00",
+      "#cc79a7"
+    ],
+    "identical_ci": true,
+    "deepseek_palette": [
+      "#8C9BAB",
+      "#B9C2CC",
+      "#D5DAE0",
+      "#6E7F92",
+      "#A7B3BF"
+    ],
+    "default_dpi_line": "300",
+    "rcparam_figure_dpi": "200",
+    "red_green_pairs_in_deepseek": 0,
+    "red_green_pairs_in_wong": 2
+  },
+  "payload": {
+    "deploy": {
+      "files": 28,
+      "bytes": 201741,
+      "by_area": {
+        "registry": {
+          "files": 5,
+          "bytes": 65886
+        },
+        "tools": {
+          "files": 5,
+          "bytes": 51762
+        },
+        "references": {
+          "files": 6,
+          "bytes": 39315
+        },
+        "evals": {
+          "files": 3,
+          "bytes": 18822
+        },
+        "(top-level files)": {
+          "files": 4,
+          "bytes": 13390
+        },
+        "templates": {
+          "files": 5,
+          "bytes": 12566
+        }
+      },
+      "sum_check": 201741
+    },
+    "whole_repo": {
+      "files": 84,
+      "bytes": 1059296,
+      "by_area": {
+        "docs": {
+          "files": 53,
+          "bytes": 846867
+        },
+        "registry": {
+          "files": 5,
+          "bytes": 65886
+        },
+        "tools": {
+          "files": 5,
+          "bytes": 51762
+        },
+        "references": {
+          "files": 6,
+          "bytes": 39315
+        },
+        "(top-level files)": {
+          "files": 7,
+          "bytes": 24078
+        },
+        "evals": {
+          "files": 3,
+          "bytes": 18822
+        },
+        "templates": {
+          "files": 5,
+          "bytes": 12566
+        }
+      },
+      "sum_check": 1059296
+    }
+  },
+  "payload_git": {
+    "before_nature_commit": {
+      "rev": "792ec91^",
+      "files": 28,
+      "bytes": 193229,
+      "paths": [
+        "SKILL.md",
+        "evals/cases.jsonl",
+        "evals/results/0.1.0.json",
+        "evals/rubric.md",
+        "references/01-语料与体裁.md",
+        "references/02-章节骨架.md",
+        "references/03-措辞指纹.md",
+        "references/04-证据与主张.md",
+        "references/05-图表规范.md",
+        "references/06-质检与反例.md",
+        "registry/ds-corpus-evidence.md",
+        "registry/exemplars.md",
+        "registry/failure-fixes.md",
+        "registry/profession-map.md",
+        "registry/skill-contract.md",
+        "skill.json",
+        "state.json",
+        "templates/01-项目素材卡.md",
+        "templates/02-证据账本.json",
+        "templates/03-摘要填空.md",
+        "templates/04-贡献与结论填空.md",
+        "templates/05-图表数据.json",
+        "tools.json",
+        "tools/evidence_scan.py",
+        "tools/paper_figure.py",
+        "tools/paper_lint.py",
+        "tools/paper_render.py",
+        "tools/paper_table.py"
+      ],
+      "sizes": {
+        "SKILL.md": 6896,
+        "evals/cases.jsonl": 13951,
+        "evals/results/0.1.0.json": 2946,
+        "evals/rubric.md": 1677,
+        "references/01-语料与体裁.md": 5294,
+        "references/02-章节骨架.md": 6570,
+        "references/03-措辞指纹.md": 7610,
+        "references/04-证据与主张.md": 5628,
+        "references/05-图表规范.md": 6377,
+        "references/06-质检与反例.md": 3988,
+        "registry/ds-corpus-evidence.md": 45524,
+        "registry/exemplars.md": 960,
+        "registry/failure-fixes.md": 4276,
+        "registry/profession-map.md": 7573,
+        "registry/skill-contract.md": 7460,
+        "skill.json": 2284,
+        "state.json": 183,
+        "templates/01-项目素材卡.md": 1615,
+        "templates/02-证据账本.json": 1811,
+        "templates/03-摘要填空.md": 3146,
+        "templates/04-贡献与结论填空.md": 3192,
+        "templates/05-图表数据.json": 2802,
+        "tools.json": 3875,
+        "tools/evidence_scan.py": 6217,
+        "tools/paper_figure.py": 6159,
+        "tools/paper_lint.py": 10299,
+        "tools/paper_render.py": 18394,
+        "tools/paper_table.py": 6522
+      }
+    },
+    "at_nature_commit": {
+      "rev": "792ec91",
+      "files": 29,
+      "bytes": 200077,
+      "paths": [
+        ".scratch_probe.md",
+        "SKILL.md",
+        "evals/cases.jsonl",
+        "evals/results/0.1.0.json",
+        "evals/rubric.md",
+        "references/01-语料与体裁.md",
+        "references/02-章节骨架.md",
+        "references/03-措辞指纹.md",
+        "references/04-证据与主张.md",
+        "references/05-图表规范.md",
+        "references/06-质检与反例.md",
+        "registry/ds-corpus-evidence.md",
+        "registry/exemplars.md",
+        "registry/failure-fixes.md",
+        "registry/profession-map.md",
+        "registry/skill-contract.md",
+        "skill.json",
+        "state.json",
+        "templates/01-项目素材卡.md",
+        "templates/02-证据账本.json",
+        "templates/03-摘要填空.md",
+        "templates/04-贡献与结论填空.md",
+        "templates/05-图表数据.json",
+        "tools.json",
+        "tools/evidence_scan.py",
+        "tools/paper_figure.py",
+        "tools/paper_lint.py",
+        "tools/paper_render.py",
+        "tools/paper_table.py"
+      ],
+      "sizes": {
+        ".scratch_probe.md": 37,
+        "SKILL.md": 6896,
+        "evals/cases.jsonl": 13951,
+        "evals/results/0.1.0.json": 2946,
+        "evals/rubric.md": 1761,
+        "references/01-语料与体裁.md": 5294,
+        "references/02-章节骨架.md": 6570,
+        "references/03-措辞指纹.md": 7610,
+        "references/04-证据与主张.md": 5628,
+        "references/05-图表规范.md": 9400,
+        "references/06-质检与反例.md": 3988,
+        "registry/ds-corpus-evidence.md": 45524,
+        "registry/exemplars.md": 960,
+        "registry/failure-fixes.md": 4276,
+        "registry/profession-map.md": 7573,
+        "registry/skill-contract.md": 7460,
+        "skill.json": 2284,
+        "state.json": 183,
+        "templates/01-项目素材卡.md": 1615,
+        "templates/02-证据账本.json": 1811,
+        "templates/03-摘要填空.md": 3146,
+        "templates/04-贡献与结论填空.md": 3192,
+        "templates/05-图表数据.json": 2802,
+        "tools.json": 3875,
+        "tools/evidence_scan.py": 6217,
+        "tools/paper_figure.py": 7357,
+        "tools/paper_lint.py": 12805,
+        "tools/paper_render.py": 18394,
+        "tools/paper_table.py": 6522
+      }
+    },
+    "head": {
+      "rev": "HEAD",
+      "files": 28,
+      "bytes": 200040,
+      "paths": [
+        "SKILL.md",
+        "evals/cases.jsonl",
+        "evals/results/0.1.0.json",
+        "evals/rubric.md",
+        "references/01-语料与体裁.md",
+        "references/02-章节骨架.md",
+        "references/03-措辞指纹.md",
+        "references/04-证据与主张.md",
+        "references/05-图表规范.md",
+        "references/06-质检与反例.md",
+        "registry/ds-corpus-evidence.md",
+        "registry/exemplars.md",
+        "registry/failure-fixes.md",
+        "registry/profession-map.md",
+        "registry/skill-contract.md",
+        "skill.json",
+        "state.json",
+        "templates/01-项目素材卡.md",
+        "templates/02-证据账本.json",
+        "templates/03-摘要填空.md",
+        "templates/04-贡献与结论填空.md",
+        "templates/05-图表数据.json",
+        "tools.json",
+        "tools/evidence_scan.py",
+        "tools/paper_figure.py",
+        "tools/paper_lint.py",
+        "tools/paper_render.py",
+        "tools/paper_table.py"
+      ],
+      "sizes": {
+        "SKILL.md": 6896,
+        "evals/cases.jsonl": 13951,
+        "evals/results/0.1.0.json": 2946,
+        "evals/rubric.md": 1761,
+        "references/01-语料与体裁.md": 5294,
+        "references/02-章节骨架.md": 6570,
+        "references/03-措辞指纹.md": 7610,
+        "references/04-证据与主张.md": 5628,
+        "references/05-图表规范.md": 9400,
+        "references/06-质检与反例.md": 3988,
+        "registry/ds-corpus-evidence.md": 45524,
+        "registry/exemplars.md": 960,
+        "registry/failure-fixes.md": 4276,
+        "registry/profession-map.md": 7573,
+        "registry/skill-contract.md": 7460,
+        "skill.json": 2284,
+        "state.json": 183,
+        "templates/01-项目素材卡.md": 1615,
+        "templates/02-证据账本.json": 1811,
+        "templates/03-摘要填空.md": 3146,
+        "templates/04-贡献与结论填空.md": 3192,
+        "templates/05-图表数据.json": 2802,
+        "tools.json": 3875,
+        "tools/evidence_scan.py": 6217,
+        "tools/paper_figure.py": 7357,
+        "tools/paper_lint.py": 12805,
+        "tools/paper_render.py": 18394,
+        "tools/paper_table.py": 6522
+      }
+    },
+    "delta": {
+      "files": 1,
+      "bytes": 6848,
+      "pct": 3.544,
+      "files_touched": [
+        "evals/rubric.md",
+        "references/05-图表规范.md",
+        "tools/paper_figure.py",
+        "tools/paper_lint.py"
+      ]
+    },
+    "delta_head": {
+      "files": 0,
+      "bytes": 6811,
+      "pct": 3.525,
+      "only_in_head": [],
+      "only_in_before": []
+    }
+  },
+  "corpus_trigger": {
+    "note": "G13/G14 是前瞻性门禁：它们只在稿件报告了误差/重复时才生效",
+    "ds_corpus_evidence": {
+      "file": "ds-corpus-evidence.md",
+      "g13_pass": true,
+      "g14_pass": true,
+      "has_error_semantics": false
+    },
+    "selfhost_paper": {
+      "file": "04-论文.md",
+      "g13_pass": true,
+      "g14_pass": true,
+      "has_error_semantics": false
+    }
+  },
+  "determinism": {
+    "runs": 5,
+    "gates_total": 14,
+    "counts": [
+      14,
+      14,
+      14,
+      14,
+      14
+    ],
+    "mean": 14.0,
+    "sd": 0.0,
+    "identical_verdicts": true,
+    "note": "同一份稿件在同一版本上重复评分；s.d. = 0 表示门禁是确定性的，不是采样估计"
+  },
+  "sync": {
+    "deploy_dir": "D:\\ZH\\vibe code\\skills\\tool\\rsi-agent\\skills\\deepseek-paper",
+    "available": true,
+    "files_source": 28,
+    "files_deploy": 28,
+    "only_in_source": [],
+    "only_in_deploy": [],
+    "content_differs": [],
+    "identical": true
+  }
+}

@@ -1,0 +1,19 @@
+\begin{table}[t]
+\centering
+\caption{Distribution of the 42 hard requirements extracted from the venue's figure guide, by group, and whether the group contributed a rule to this pipeline. Requirements are counted from the extract file and the groups are the extract's own headings, so the column sums to 42 exactly. Adopted counts the rules that became a gate or a renderer parameter; a group with zero adopted rules is not a group we judged unimportant, it is a group whose requirements are either layout constraints or judgements no text scan can make. Because the columns carry different meanings, only the requirement count is a quantity that can be larger or smaller, so no cell is marked as best.}
+\label{tab:tab-nature-groups}
+\begin{tabular}{llcc}
+\toprule
+\textbf{Group} & \textbf{Requirements} & \textbf{Adopted} & \textbf{Why not more} \\
+\midrule
+A figure legend structure & 5 & 1 & only the statistics clause is a text feature \\
+B typography and resolution & 6 & 1 & layout except the 300 dpi floor \\
+C panel labelling & 4 & 0 & conflicts with the corpus convention \\
+D statistics reporting & 5 & 1 & needs the sample size as a field \\
+E colour and accessibility & 5 & 1 & a palette is data, the rest is contrast arithmetic \\
+F tables & 5 & 0 & booktabs already enforced by the renderer \\
+G data and code availability & 6 & 0 & section placement, not a text predicate \\
+H extended data split & 6 & 0 & a venue-specific container \\
+\bottomrule
+\end{tabular}
+\end{table}

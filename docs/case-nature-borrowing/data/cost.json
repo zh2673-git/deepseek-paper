@@ -1,0 +1,21 @@
+{
+  "session_file": "runtime/plugins/memory/data/sessions/main.json",
+  "messages": 149,
+  "roles": {
+    "user": 2,
+    "assistant": 66,
+    "tool": 81
+  },
+  "context_chars": 106062,
+  "tool_calls": 81,
+  "tool_distribution": {
+    "bash": 63,
+    "write_file": 9,
+    "grep": 5,
+    "read_file": 3,
+    "edit_file": 1
+  },
+  "gpu_hours": 0,
+  "tokens_reported": null,
+  "tokens_not_reported_because": "字符→token 的比值未标定；stream 的 input_tokens 是每轮累积上下文，与同一段文本重复相乘，得不到可复核的单一系数。同一纪律见 case-selfhost 的 ev-010（该条因口径不稳被 dropped）。本文只报第一案例已实测的 2.04M tokens 作为参照。"
+}

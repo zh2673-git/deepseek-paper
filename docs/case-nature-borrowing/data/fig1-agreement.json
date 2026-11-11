@@ -1,0 +1,13 @@
+{
+  "kind": "figure",
+  "id": "fig1-agreement",
+  "type": "bar",
+  "caption": "Agreement between the verdict of each borrowing gate and the verdict its author expected, over n = 8 injected probes. Bars count probes whose verdict matched; G13 matches on 7 of 8 and G14 on 8 of 8, with the single mismatch being a false positive in which the abbreviation CI is read as a confidence interval although the probe uses it to mean continuous integration. Because the two gates read disjoint text features, the counts are independent rather than two readings of one score, and a difference of one probe is at the same level as a difference of zero.",
+  "y_label": "Probes matching the expected verdict (of 8)",
+  "categories": ["G13: statistics declared", "G14: sample size in caption"],
+  "series": [
+    {"name": "Probes matching", "values": [7, 8], "highlight": true},
+    {"name": "Probes injected", "values": [8, 8]}
+  ],
+  "style": {"grid": "three-line", "colormap": "deepseek", "legend": "bottom", "value_labels": true, "width": 5.6, "height": 2.5, "rotate": 0}
+}

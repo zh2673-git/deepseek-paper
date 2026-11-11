@@ -1,0 +1,18 @@
+{
+  "kind": "table",
+  "id": "tab-payload",
+  "caption_lead": "Payload and change surface of the borrowing commit, measured in git blob bytes with line endings normalised to LF.",
+  "caption_tail": "The before column is the parent commit and the after column is the borrowing commit, so the delta is exactly what the four rules cost in released bytes and the five per-file deltas sum to the whole-deployment delta. A sixth file was committed in the same change and removed afterwards, which is why the current head is 37 bytes smaller than the after column and why the whole-deployment delta is one file short of the commit's file count. Two byte figures appear in this paper and they are not interchangeable: git blob bytes are reported here, while the working tree on Windows is larger because of CRLF line endings.",
+  "group_column": null,
+  "data_start": 1,
+  "columns": ["File", "Lines added", "Lines removed", "Bytes before", "Bytes after", "Delta"],
+  "highlight": {"best": false, "second": false},
+  "rows": [
+    ["tools/paper_lint.py", "36", "0", "10299", "12805", "2506"],
+    ["references/05-图表规范.md", "43", "0", "6377", "9400", "3023"],
+    ["tools/paper_figure.py", "21", "3", "6159", "7357", "1198"],
+    ["evals/rubric.md", "2", "2", "1677", "1761", "84"],
+    ["SKILL.md", "3", "3", "6896", "6896", "0"],
+    ["Whole deployment", "105", "8", "193229", "200077", "6848"]
+  ]
+}

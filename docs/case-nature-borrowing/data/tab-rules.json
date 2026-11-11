@@ -1,0 +1,16 @@
+{
+  "kind": "table",
+  "id": "tab-rules",
+  "caption_lead": "The four rules adopted from the venue guide, the clause they come from, what they became in the pipeline, and what each costs.",
+  "caption_tail": "The source clause column quotes the guide verbatim, so a reader can check the borrowing rather than trust the summary. Cost names the measured or expected failure mode of each rule: two rules introduce a new way to fail a compliant draft, one introduces a false positive on an abbreviation, and one changes an output parameter whose effect is visible in the file metadata. Because the columns are text and the only quantity is the count of rules, no cell is marked as best.",
+  "group_column": null,
+  "data_start": 0,
+  "columns": ["Rule", "Source clause (abridged)", "What it became", "Cost"],
+  "highlight": {"best": false, "second": false},
+  "rows": [
+    ["R1 error bars must be defined", "All error bars and statistics must be defined in the figure legend.", "G13: an error symbol without a definition anywhere in the text fails", "a definition anywhere excuses every symbol, so the check is a count not a binding"],
+    ["R2 exact sample size per group", "The exact sample size (n) for each experimental group, given as a discrete number.", "G14: a figure caption carrying an error symbol without n = N fails", "reads figure captions only, so a table caption escapes it"],
+    ["R3 accessible colour palette", "An accessible colour palette to be used (Wong, Nature Methods 8, 441).", "paper_figure accepts style.palette = colorblind and emits the eight Wong hex values", "opt-in rather than default, because the corpus convention is a grey-blue ramp"],
+    ["R4 300 dpi floor", "Photographic images at a minimum of 300 dpi at the maximum usable size.", "paper_figure default savefig dpi raised from 200 to 300", "the rcParams figure dpi stays at 200, so the two settings disagree in the source"]
+  ]
+}

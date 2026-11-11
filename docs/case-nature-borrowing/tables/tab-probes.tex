@@ -1,0 +1,19 @@
+\begin{table}[t]
+\centering
+\caption{Verdict of the two borrowing gates on eight injected probes derived from one compliant baseline draft. Each probe is the same 25,955-character baseline with one local edit, so any change in a verdict is attributable to that edit. Expected is the verdict the probe was built to elicit and Match records whether the gate returned it; the last two columns re-score each probe with the evidence ledger supplied, so they show how many of the fourteen gates the draft satisfies rather than how many of the two new ones. All probes are scored by the same checker at the same version, and a difference of one gate is at the same level as a difference of zero.}
+\label{tab:tab-probes}
+\begin{tabular}{llcccccc}
+\toprule
+\textbf{Probe} & \textbf{Injected edit} & \textbf{G13} & \textbf{G14} & \textbf{Expected} & \textbf{Match} & \textbf{Of 14} & \textbf{Failing gates} \\
+\midrule
+P0 & none, compliant baseline & pass & pass & pass & 2 of 2 & 14 & none \\
+P1 & error bar, no definition & fail & pass & fail & 2 of 2 & 13 & G13 \\
+P2 & P1 plus s.d. and n = 5 & pass & pass & pass & 2 of 2 & 14 & none \\
+P3 & caption gains an error bar & fail & fail & fail & 2 of 2 & 12 & G13, G14 \\
+P4 & P3 plus n = 5 in caption & pass & pass & pass & 2 of 2 & 14 & none \\
+P5 & two bars, only the first defined & pass & pass & pass & 2 of 2 & 14 & none \\
+P6 & table caption gains an error bar & fail & pass & fail & 2 of 2 & 13 & G13 \\
+P7 & CI used to mean continuous integration & fail & pass & pass & 1 of 2 & 13 & G13 \\
+\bottomrule
+\end{tabular}
+\end{table}
